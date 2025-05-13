@@ -37,7 +37,7 @@ try:
     from pyJianYingDraft.script_file import Script_file
     from pyJianYingDraft.audio_segment import Audio_segment
     from pyJianYingDraft.local_materials import Audio_material
-    from demo import batch_generate_drafts
+    from jianying_utils import batch_generate_drafts
 except ImportError as e:
     print(f"错误: 找不到pyJianYingDraft库或相关模块。详情: {e}")
     sys.exit(1)
