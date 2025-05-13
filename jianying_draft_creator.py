@@ -690,6 +690,37 @@ def main():
     creator = JianYingDraftCreator(config)
     draft_path = creator.create_draft()
     
+    # 自动提取 animation_table
+    if draft_path:
+        draft_content_path = os.path.join(draft_path, "draft_content.json")
+        if os.path.exists(draft_content_path):
+            try:
+                with open(draft_content_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                animation_table = {}
+                for anim in data.get("materials", {}).get("material_animations", []):
+                    for a in anim.get("animations", []):
+                        name = a.get("name")
+                        if name and name not in animation_table:
+                            animation_table[name] = {
+                                "resource_id": a.get("resource_id"),
+                                "duration": a.get("duration"),
+                                "path": a.get("path")
+                            }
+                anim_table_path = os.path.join(draft_path, "animation_table.py")
+                with open(anim_table_path, "w", encoding="utf-8") as f:
+                    f.write("animation_table = {\n")
+                    for k, v in animation_table.items():
+                        f.write(f'    "{k}": {{\n')
+                        f.write(f'        "resource_id": "{v["resource_id"]}",\n')
+                        f.write(f'        "duration": {v["duration"]},\n')
+                        f.write(f'        "path": "{v["path"]}"\n')
+                        f.write("    },\n")
+                    f.write("}\n")
+                print(f"\n📝 已自动提取 animation_table 并保存到: {anim_table_path}")
+            except Exception as e:
+                print(f"自动提取 animation_table 失败: {e}")
+    
     if draft_path:
         print(f"\n✅ 成功创建草稿")
         print(f"📁 草稿路径: {draft_path}")

@@ -1,4 +1,5 @@
 {
+    "_position说明": "position.x/y 支持相对位置（0~1，左上角为0,0，右下角为1,1），推荐字幕底部居中用 x:0.5, y:0.907",
     "draft_name": "my_awesome_video",
     "drafts_root": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts",
     "template_folder": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts/Draft Template Old",
@@ -53,13 +54,13 @@
     ],
     "audio": [
         {
-            "url": "https://lf26-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_73b860f9-7997-4e02-ad67-5f4a41c49407.mp3?lk3s=da27ec82&x-expires=1747138465&x-signature=iGnK6bdTBDfhXecRfx2VrQP3J88%3D",
+            "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_fe71b803-6347-48d0-8cd0-7d24132977c8.mp3?lk3s=da27ec82&x-expires=1747148030&x-signature=FTUVGk%2B6ZHGDLnCQgj9Os07gtSQ%3D",
             "enabled": true,
             "volume": 1.0,
             "start": "0s"
         },
         {
-            "url": "https://lf26-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_ed4de244-e78b-44c2-adc7-bc332f3977a6.mp3?lk3s=da27ec82&x-expires=1747138515&x-signature=dC0m5gmoP0hG%2B0gyHyVDI0rZ6Ds%3D",
+            "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_fe71b803-6347-48d0-8cd0-7d24132977c8.mp3?lk3s=da27ec82&x-expires=1747148030&x-signature=FTUVGk%2B6ZHGDLnCQgj9Os07gtSQ%3D",
             "enabled": true,
             "volume": 0.8,
             "start": "5s"
@@ -71,30 +72,48 @@
             "start": "0s",
             "duration": "5s",
             "font": "后现代体",
-            "style": {"color": [1.0, 1.0, 0.0]},
-            "animation": "故障闪动",
-            "animation_duration": "1s",
-            "position": {"x": 0, "y": -0.8}
+            "style": {
+                "color": [1.0, 1.0, 0.0],
+                "size": 15
+            },
+            "position": {
+                "x": 0.5,
+                "y": 0.907
+            },
+            "intro_animation": "随机打字机",
+            "outro_animation": "滑动下落"
         },
         {
             "text": "第二段视频：故障特效 + 闪白转场",
             "start": "5s",
             "duration": "5s",
             "font": "后现代体",
-            "style": {"color": [1.0, 0.5, 0.0]},
-            "animation": "故障闪动",
-            "animation_duration": "1s",
-            "position": {"x": 0, "y": -0.8}
+            "style": {
+                "color": [1.0, 0.5, 0.0],
+                "size": 12
+            },
+            "position": {
+                "x": 0.5,
+                "y": 0.907
+            },
+            "intro_animation": "随机打字机",
+            "outro_animation": "滑动下落"
         },
         {
             "text": "第三段视频：金粉闪闪特效 + 叠化转场",
             "start": "10s",
             "duration": "5s",
             "font": "后现代体",
-            "style": {"color": [0.0, 1.0, 1.0]},
-            "animation": "故障闪动",
-            "animation_duration": "1s",
-            "position": {"x": 0, "y": -0.8}
+            "style": {
+                "color": [0.0, 1.0, 1.0],
+                "size": 8
+            },
+            "position": {
+                "x": 0.5,
+                "y": 0.907
+            },
+           "intro_animation": "随机打字机",
+            "outro_animation": "滑动下落"
         }
     ]
 } 

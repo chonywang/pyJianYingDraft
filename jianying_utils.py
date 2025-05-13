@@ -12,6 +12,13 @@ import pyJianYingDraft as draft
 from pyJianYingDraft import Intro_type, Transition_type, trange, tim
 from pyJianYingDraft.metadata.video_effect_meta import Video_scene_effect_type
 from pyJianYingDraft.metadata.filter_meta import Filter_type
+from pyJianYingDraft.metadata import Text_intro, Text_outro, Text_loop_anim
+
+# 动画查找表自动导入
+try:
+    from animation_table import animation_table
+except ImportError:
+    animation_table = {}
 
 def download_file_if_needed(file_path, save_dir):
     if file_path.startswith('http://') or file_path.startswith('https://'):
@@ -378,47 +385,122 @@ def create_draft_from_params(params, new_draft_folder):
         video_segments.append(gif_segment)
         script.add_segment(gif_segment)
     for text in params.get("texts", []):
+        print(f"[DEBUG] 处理文本: {text['text']}")
+        print(f"[DEBUG] intro_animation: {text.get('intro_animation')}, outro_animation: {text.get('outro_animation')}")
+        print(f"[DEBUG] animation_table keys: {list(animation_table.keys())}")
         if "Template Old" in new_draft_folder:
             text_style_id = str(uuid.uuid4()).replace("-", "")
+            font_size = text.get("style", {}).get("size", 36)
             text_style = {
                 "id": text_style_id,
                 "type": "text_style",
                 "multi_language_current": "none",
                 "font": text.get("font", "默认"),
                 "color": text.get("style", {}).get("color", (1.0, 1.0, 1.0)),
-                "font_size": text.get("style", {}).get("size", 36)
+                "font_size": font_size
             }
-            if "material_animations" not in script.materials:
+            if not hasattr(script.materials, "material_animations"):
                 script.materials.material_animations = []
             script.materials.material_animations.append(text_style)
+            
+            # 计算位置（方案A：左上角为(0,0)，支持像素和归一化输入，自动转为中心为(0,0)）
+            canvas_w, canvas_h = 1920, 1080
+            x = text.get("position", {}).get("x", 0)
+            y = text.get("position", {}).get("y", 0)
+            # 支持归一化输入
+            if isinstance(x, float) and abs(x) <= 1.0:
+                x = int(x * canvas_w)
+            if isinstance(y, float) and abs(y) <= 1.0:
+                y = int(y * canvas_h)
+            # 转换为以中心为原点，分母为画布宽/高，±0.5为边界
+            transform_x = (x - canvas_w // 2) / canvas_w
+            transform_y = (y - canvas_h // 2) / canvas_h
+            # 打印文本定位日志
+            print(f"[文本定位] text: {text['text']}")
+            print(f"[文本定位] position.x: {x}, position.y: {y}")
+            print(f"[文本定位] transform_x: {transform_x}, transform_y: {transform_y}")
             text_segment = draft.Text_segment(
                 text["text"],
                 trange(text.get("start", "0s"), text.get("duration", "5s")),
                 font=getattr(draft.Font_type, text.get("font", "默认")),
-                style=draft.Text_style(color=text.get("style", {}).get("color", (1.0, 1.0, 1.0))),
+                style=draft.Text_style(
+                    color=text.get("style", {}).get("color", (1.0, 1.0, 1.0)),
+                    size=font_size
+                ),
                 clip_settings=draft.Clip_settings(
-                    transform_x=text.get("position", {}).get("x", 0),
-                    transform_y=text.get("position", {}).get("y", 0)
+                    transform_x=transform_x,
+                    transform_y=transform_y
                 )
             )
             text_segment.extra_material_refs.append(text_style_id)
         else:
+            # 计算位置（方案A：左上角为(0,0)，支持像素和归一化输入，自动转为中心为(0,0)）
+            canvas_w, canvas_h = 1920, 1080
+            x = text.get("position", {}).get("x", 0)
+            y = text.get("position", {}).get("y", 0)
+            # 支持归一化输入
+            if isinstance(x, float) and abs(x) <= 1.0:
+                x = int(x * canvas_w)
+            if isinstance(y, float) and abs(y) <= 1.0:
+                y = int(y * canvas_h)
+            # 转换为以中心为原点，分母为画布宽/高，±0.5为边界
+            transform_x = (x - canvas_w // 2) / canvas_w
+            transform_y = (y - canvas_h // 2) / canvas_h
+            # 打印文本定位日志
+            print(f"[文本定位] text: {text['text']}")
+            print(f"[文本定位] position.x: {x}, position.y: {y}")
+            print(f"[文本定位] transform_x: {transform_x}, transform_y: {transform_y}")
+            font_size = text.get("style", {}).get("size", 36)
             text_segment = draft.Text_segment(
                 text["text"],
                 trange(text.get("start", "0s"), text.get("duration", "5s")),
                 font=getattr(draft.Font_type, text.get("font", "默认")),
-                style=draft.Text_style(color=text.get("style", {}).get("color", (1.0, 1.0, 1.0))),
+                style=draft.Text_style(
+                    color=text.get("style", {}).get("color", (1.0, 1.0, 1.0)),
+                    size=font_size
+                ),
                 clip_settings=draft.Clip_settings(
-                    transform_x=text.get("position", {}).get("x", 0),
-                    transform_y=text.get("position", {}).get("y", 0)
+                    transform_x=transform_x,
+                    transform_y=transform_y
                 )
             )
-        if "animation" in text:
-            text_segment.add_animation(
-                getattr(draft.Text_outro, text["animation"]),
-                duration=tim(text.get("animation_duration", "1s"))
-            )
+
+        # 处理文本动画
+        if "intro_animation" in text or "outro_animation" in text:
+            # 使用 Text_intro, Text_outro, Text_loop_anim 添加动画
+            try:
+                # 先添加入场动画
+                if "intro_animation" in text:
+                    intro_anim = getattr(Text_intro, text["intro_animation"])
+                    text_segment.add_animation(intro_anim)
+                    print(f"[DEBUG] 添加入场动画: {text['intro_animation']}")
+
+                # 再添加出场动画
+                if "outro_animation" in text:
+                    outro_anim = getattr(Text_outro, text["outro_animation"])
+                    text_segment.add_animation(outro_anim)
+                    print(f"[DEBUG] 添加出场动画: {text['outro_animation']}")
+
+                # 最后添加循环动画（如果有）
+                if "loop_animation" in text:
+                    loop_anim = getattr(Text_loop_anim, text["loop_animation"])
+                    text_segment.add_animation(loop_anim)
+                    print(f"[DEBUG] 添加循环动画: {text['loop_animation']}")
+
+            except AttributeError as e:
+                print(f"[DEBUG] 动画类型不存在: {e}")
+            except Exception as e:
+                print(f"[DEBUG] 添加动画失败: {e}")
+
+        print(f"[DEBUG] 当前 script.materials.material_animations 长度: {len(getattr(script.materials, 'material_animations', []))}")
+
         script.add_segment(text_segment)
+        # 只为当前添加的文本设置 font_size 和 font_name，避免覆盖所有文本
+        if hasattr(script.materials, "texts") and script.materials.texts:
+            t = script.materials.texts[-1]
+            if isinstance(t, dict):
+                t["font_size"] = font_size
+                t["font_name"] = text.get("font", "系统")
     filter_ids = {}
     if params.get("filters"):
         for filter_ in params.get("filters", []):
