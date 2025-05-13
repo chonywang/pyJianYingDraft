@@ -2,13 +2,22 @@
 
 import time
 import shutil
-import uiautomation as uia
-
+import json
+import os
+from pathlib import Path
 from enum import Enum
-from typing import Optional, Literal, Callable
+from typing import Optional, Literal, Dict, Any, Tuple, List
+import logging
 
 from . import exceptions
 from .exceptions import AutomationError
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 class Export_resolution(Enum):
     """导出分辨率"""
@@ -27,204 +36,291 @@ class Export_framerate(Enum):
     FR_50 = "50fps"
     FR_60 = "60fps"
 
-class ControlFinder:
-    """控件查找器，封装部分与控件查找相关的逻辑"""
-
-    @staticmethod
-    def desc_matcher(target_desc: str, depth: int = 2, exact: bool = False) -> Callable[[uia.Control, int], bool]:
-        """根据full_description查找控件的匹配器"""
-        target_desc = target_desc.lower()
-        def matcher(control: uia.Control, _depth: int) -> bool:
-            if _depth != depth:
-                return False
-            full_desc: str = control.GetPropertyValue(30159).lower()
-            return (target_desc == full_desc) if exact else (target_desc in full_desc)
-        return matcher
-
-    @staticmethod
-    def class_name_matcher(class_name: str, depth: int = 1, exact: bool = False) -> Callable[[uia.Control, int], bool]:
-        """根据ClassName查找控件的匹配器"""
-        class_name = class_name.lower()
-        def matcher(control: uia.Control, _depth: int) -> bool:
-            if _depth != depth:
-                return False
-            curr_class_name: str = control.ClassName.lower()
-            return (class_name == curr_class_name) if exact else (class_name in curr_class_name)
-        return matcher
-
 class Jianying_controller:
-    """剪映控制器"""
+    """剪映控制器 - 文件操作版本"""
 
-    app: uia.WindowControl
-    """剪映窗口"""
-    app_status: Literal["home", "edit", "pre_export"]
+    def __init__(self, draft_path: Optional[str] = None, log_level: int = logging.INFO):
+        """初始化剪映控制器
+        
+        Args:
+            draft_path (str, optional): 剪映草稿文件夹路径，如果不指定则使用默认路径
+            log_level (int, optional): 日志级别，默认为 INFO
+        """
+        logger.setLevel(log_level)
+        self.draft_path = draft_path or self._get_default_draft_path()
+        if not os.path.exists(self.draft_path):
+            raise AutomationError(f"剪映草稿文件夹不存在: {self.draft_path}")
+        
+        # 获取默认导出路径
+        self.default_export_path = self._get_default_export_path()
+        logger.info(f"草稿路径: {self.draft_path}")
+        logger.info(f"默认导出路径: {self.default_export_path}")
 
-    def __init__(self):
-        """初始化剪映控制器, 此时剪映应该处于目录页"""
-        self.get_window()
+    def _get_default_draft_path(self) -> str:
+        """获取剪映默认草稿文件夹路径"""
+        if os.name == 'nt':  # Windows
+            return os.path.expanduser("~/AppData/Local/JianyingPro/User Data/Projects/com.lveditor.draft")
+        elif os.name == 'posix':  # macOS/Linux
+            # 尝试多个可能的路径
+            possible_paths = [
+                os.path.expanduser("~/Library/Application Support/JianyingPro/User Data/Projects/com.lveditor.draft"),
+                os.path.expanduser("~/Library/Application Support/JianyingPro/Projects/com.lveditor.draft"),
+                os.path.expanduser("~/Documents/jianyan/JianyingPro Drafts"),
+                os.path.expanduser("~/Documents/JianyingPro Drafts")
+            ]
+            
+            for path in possible_paths:
+                if os.path.exists(path):
+                    return path
+                    
+            # 如果都找不到，返回最可能的路径
+            return possible_paths[2]  # 返回 ~/Documents/jianyan/JianyingPro Drafts
+        else:
+            raise AutomationError("不支持的操作系统")
+
+    def _get_default_export_path(self) -> str:
+        """获取剪映默认导出路径"""
+        if os.name == 'nt':  # Windows
+            return os.path.expanduser("~/Videos/剪映导出")
+        elif os.name == 'posix':  # macOS/Linux
+            return os.path.expanduser("~/Movies/剪映导出")
+        else:
+            raise AutomationError("不支持的操作系统")
+
+    def _find_draft_folder(self, draft_name: str) -> str:
+        """查找指定名称的草稿文件夹
+        
+        Args:
+            draft_name (str): 草稿名称
+            
+        Returns:
+            str: 草稿文件夹路径
+            
+        Raises:
+            DraftNotFound: 未找到指定名称的草稿
+        """
+        logger.info(f"查找草稿: {draft_name}")
+        for folder in os.listdir(self.draft_path):
+            folder_path = os.path.join(self.draft_path, folder)
+            if not os.path.isdir(folder_path):
+                continue
+                
+            # 支持 draft_meta.json 和 draft_meta_info.json
+            meta_file = os.path.join(folder_path, "draft_meta.json")
+            if not os.path.exists(meta_file):
+                meta_file = os.path.join(folder_path, "draft_meta_info.json")
+                if not os.path.exists(meta_file):
+                    continue
+                
+            try:
+                with open(meta_file, 'r', encoding='utf-8') as f:
+                    meta = json.load(f)
+                    if meta.get('draft_name') == draft_name:
+                        logger.info(f"找到草稿: {folder_path}")
+                        return folder_path
+            except (json.JSONDecodeError, KeyError) as e:
+                logger.warning(f"读取草稿元数据失败: {folder_path}, 错误: {str(e)}")
+                continue
+                
+        raise exceptions.DraftNotFound(f"未找到名为{draft_name}的剪映草稿")
+
+    def _get_export_filename(self, draft_name: str) -> str:
+        """根据草稿名称生成导出文件名
+        
+        Args:
+            draft_name (str): 草稿名称
+            
+        Returns:
+            str: 导出文件名
+        """
+        # 移除非法字符
+        safe_name = "".join(c for c in draft_name if c.isalnum() or c in " -_")
+        return f"{safe_name}.mp4"
+
+    def _prepare_output_path(self, output_path: Optional[str], draft_name: str) -> Tuple[str, str]:
+        """准备输出路径
+        
+        Args:
+            output_path (str, optional): 用户指定的输出路径
+            draft_name (str): 草稿名称
+            
+        Returns:
+            Tuple[str, str]: (临时导出路径, 最终输出路径)
+        """
+        if output_path is None:
+            # 使用默认导出路径
+            output_path = os.path.join(self.default_export_path, self._get_export_filename(draft_name))
+        
+        # 确保输出目录存在
+        output_dir = os.path.dirname(output_path)
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # 临时导出路径（在默认导出目录）
+        temp_export_path = os.path.join(self.default_export_path, self._get_export_filename(draft_name))
+        
+        logger.info(f"临时导出路径: {temp_export_path}")
+        logger.info(f"最终输出路径: {output_path}")
+        
+        return temp_export_path, output_path
+
+    def _monitor_export_progress(self, temp_export_path: str, timeout: float) -> bool:
+        """监控导出进度
+        
+        Args:
+            temp_export_path (str): 临时导出文件路径
+            timeout (float): 超时时间
+            
+        Returns:
+            bool: 是否成功导出
+        """
+        st = time.time()
+        last_size = 0
+        no_change_count = 0
+        
+        while True:
+            if os.path.exists(temp_export_path):
+                try:
+                    current_size = os.path.getsize(temp_export_path)
+                    if current_size > last_size:
+                        logger.info(f"导出进度: {current_size / 1024 / 1024:.1f}MB")
+                        last_size = current_size
+                        no_change_count = 0
+                    else:
+                        no_change_count += 1
+                        if no_change_count >= 5:  # 5秒没有变化，认为导出完成
+                            return True
+                except OSError:
+                    pass
+                    
+            if time.time() - st > timeout:
+                logger.error(f"导出超时，时限为{timeout}秒")
+                return False
+                
+            time.sleep(1)
+            
+        return False
+
+    def _move_exported_file(self, temp_export_path: str, final_output_path: str, max_retries: int = 3) -> bool:
+        """移动导出的文件
+        
+        Args:
+            temp_export_path (str): 临时导出文件路径
+            final_output_path (str): 最终输出路径
+            max_retries (int): 最大重试次数
+            
+        Returns:
+            bool: 是否成功移动
+        """
+        for i in range(max_retries):
+            try:
+                # 等待文件写入完成
+                time.sleep(2)
+                # 移动文件到最终位置
+                shutil.move(temp_export_path, final_output_path)
+                logger.info(f"文件已移动到: {final_output_path}")
+                return True
+            except (shutil.Error, OSError) as e:
+                logger.warning(f"移动文件失败 (尝试 {i+1}/{max_retries}): {str(e)}")
+                time.sleep(1)
+                
+        return False
 
     def export_draft(self, draft_name: str, output_path: Optional[str] = None, *,
                      resolution: Optional[Export_resolution] = None,
                      framerate: Optional[Export_framerate] = None,
                      timeout: float = 1200) -> None:
-        """导出指定的剪映草稿, **目前仅支持剪映6及以下版本**
-
-        **注意: 需要确认有导出草稿的权限(不使用VIP功能或已开通VIP), 否则可能陷入死循环**
-
+        """导出指定的剪映草稿
+        
         Args:
-            draft_name (`str`): 要导出的剪映草稿名称
-            output_path (`str`, optional): 导出路径, 支持指向文件夹或直接指向文件, 不指定则使用剪映默认路径.
-            resolution (`Export_resolution`, optional): 导出分辨率, 默认不改变剪映导出窗口中的设置.
-            framerate (`Export_framerate`, optional): 导出帧率, 默认不改变剪映导出窗口中的设置.
-            timeout (`float`, optional): 导出超时时间(秒), 默认为20分钟.
-
+            draft_name (str): 要导出的剪映草稿名称
+            output_path (str, optional): 导出路径，支持指向文件夹或直接指向文件
+            resolution (Export_resolution, optional): 导出分辨率
+            framerate (Export_framerate, optional): 导出帧率
+            timeout (float, optional): 导出超时时间(秒)，默认为20分钟
+            
         Raises:
-            `DraftNotFound`: 未找到指定名称的剪映草稿
-            `AutomationError`: 剪映操作失败
+            DraftNotFound: 未找到指定名称的剪映草稿
+            AutomationError: 导出操作失败
         """
-        print(f"开始导出 {draft_name} 至 {output_path}")
-        self.get_window()
-        self.switch_to_home()
+        logger.info(f"开始导出草稿: {draft_name}")
+        
+        # 查找草稿文件夹
+        draft_folder = self._find_draft_folder(draft_name)
+        
+        # 更新导出设置
+        if resolution is not None or framerate is not None:
+            self._update_export_settings(draft_folder, resolution, framerate)
+        
+        # 准备输出路径
+        temp_export_path, final_output_path = self._prepare_output_path(output_path, draft_name)
+            
+        # 导出视频
+        logger.info("\n请在剪映中执行以下步骤：")
+        logger.info("1. 打开剪映并找到项目")
+        logger.info("2. 点击导出按钮")
+        logger.info("3. 确认导出设置")
+        logger.info("4. 点击导出")
+        logger.info("\n导出完成后，文件将被移动到指定位置")
+        
+        # 监控导出进度
+        if not self._monitor_export_progress(temp_export_path, timeout):
+            raise AutomationError(f"导出超时，时限为{timeout}秒")
+            
+        # 移动导出的文件
+        if not self._move_exported_file(temp_export_path, final_output_path):
+            raise AutomationError("移动导出文件失败")
+            
+        logger.info(f"导出完成: {final_output_path}")
 
-        # 点击对应草稿
-        draft_name_text = self.app.TextControl(
-            searchDepth=2,
-            Compare=ControlFinder.desc_matcher(f"HomePageDraftTitle:{draft_name}", exact=True)
-        )
-        if not draft_name_text.Exists(0):
-            raise exceptions.DraftNotFound(f"未找到名为{draft_name}的剪映草稿")
-        draft_btn = draft_name_text.GetParentControl()
-        assert draft_btn is not None
-        draft_btn.Click(simulateMove=False)
-        time.sleep(10)
-        self.get_window()
-
-        # 点击导出按钮
-        export_btn = self.app.TextControl(searchDepth=2, Compare=ControlFinder.desc_matcher("MainWindowTitleBarExportBtn"))
-        if not export_btn.Exists(0):
-            raise AutomationError("未在编辑窗口中找到导出按钮")
-        export_btn.Click(simulateMove=False)
-        time.sleep(10)
-        self.get_window()
-
-        # 获取原始导出路径（带后缀名）
-        export_path_sib = self.app.TextControl(searchDepth=2, Compare=ControlFinder.desc_matcher("ExportPath"))
-        if not export_path_sib.Exists(0):
-            raise AutomationError("未找到导出路径框")
-        export_path_text = export_path_sib.GetSiblingControl(lambda ctrl: True)
-        assert export_path_text is not None
-        export_path = export_path_text.GetPropertyValue(30159)
-
-        # 设置分辨率
-        if resolution is not None:
-            setting_group = self.app.GroupControl(searchDepth=1,
-                                                  Compare=ControlFinder.class_name_matcher("PanelSettingsGroup_QMLTYPE"))
-            if not setting_group.Exists(0):
-                raise AutomationError("未找到导出设置组")
-            resolution_btn = setting_group.TextControl(searchDepth=2, Compare=ControlFinder.desc_matcher("ExportSharpnessInput"))
-            if not resolution_btn.Exists(0.5):
-                raise AutomationError("未找到导出分辨率下拉框")
-            resolution_btn.Click(simulateMove=False)
-            time.sleep(0.5)
-            resolution_item = self.app.TextControl(
-                searchDepth=2, Compare=ControlFinder.desc_matcher(resolution.value)
-            )
-            if not resolution_item.Exists(0.5):
-                raise AutomationError(f"未找到{resolution.value}分辨率选项")
-            resolution_item.Click(simulateMove=False)
-            time.sleep(0.5)
-
-        # 设置帧率
-        if framerate is not None:
-            setting_group = self.app.GroupControl(searchDepth=1,
-                                                  Compare=ControlFinder.class_name_matcher("PanelSettingsGroup_QMLTYPE"))
-            if not setting_group.Exists(0):
-                raise AutomationError("未找到导出设置组")
-            framerate_btn = setting_group.TextControl(searchDepth=2, Compare=ControlFinder.desc_matcher("FrameRateInput"))
-            if not framerate_btn.Exists(0.5):
-                raise AutomationError("未找到导出帧率下拉框")
-            framerate_btn.Click(simulateMove=False)
-            time.sleep(0.5)
-            framerate_item = self.app.TextControl(
-                searchDepth=2, Compare=ControlFinder.desc_matcher(framerate.value)
-            )
-            if not framerate_item.Exists(0.5):
-                raise AutomationError(f"未找到{framerate.value}帧率选项")
-            framerate_item.Click(simulateMove=False)
-            time.sleep(0.5)
-
-
-        # 点击导出
-        export_btn = self.app.TextControl(searchDepth=2, Compare=ControlFinder.desc_matcher("ExportOkBtn", exact=True))
-        if not export_btn.Exists(0):
-            raise AutomationError("未在导出窗口中找到导出按钮")
-        export_btn.Click(simulateMove=False)
-        time.sleep(5)
-
-        # 等待导出完成
-        st = time.time()
-        while True:
-            self.get_window()
-            if self.app_status != "pre_export": continue
-
-            succeed_close_btn = self.app.TextControl(searchDepth=2, Compare=ControlFinder.desc_matcher("ExportSucceedCloseBtn"))
-            if succeed_close_btn.Exists(0):
-                succeed_close_btn.Click(simulateMove=False)
+    def _update_export_settings(self, draft_folder: str, 
+                              resolution: Optional[Export_resolution] = None,
+                              framerate: Optional[Export_framerate] = None) -> None:
+        """更新导出设置
+        
+        Args:
+            draft_folder (str): 草稿文件夹路径
+            resolution (Export_resolution, optional): 导出分辨率
+            framerate (Export_framerate, optional): 导出帧率
+        """
+        # 支持多种设置文件名
+        settings_candidates = [
+            os.path.join(draft_folder, "draft_settings.json"),
+            os.path.join(draft_folder, "draft_settings"),
+            os.path.join(draft_folder, "draft_setting.json"),
+            os.path.join(draft_folder, "draft_setting"),
+        ]
+        settings_file = None
+        for candidate in settings_candidates:
+            if os.path.exists(candidate):
+                settings_file = candidate
                 break
-
-            if time.time() - st > timeout:
-                raise AutomationError("导出超时, 时限为%d秒" % timeout)
-
-            time.sleep(1)
-        time.sleep(2)
-
-        # 回到目录页
-        self.get_window()
-        self.switch_to_home()
-        time.sleep(2)
-
-        # 复制导出的文件到指定目录
-        if output_path is not None:
-            shutil.move(export_path, output_path)
-
-        print(f"导出 {draft_name} 至 {output_path} 完成")
-
-    def switch_to_home(self) -> None:
-        """切换到剪映主页"""
-        if self.app_status == "home":
+        
+        if not settings_file:
+            logger.warning(f"未找到导出设置文件，跳过分辨率/帧率设置")
             return
-        if self.app_status != "edit":
-            raise AutomationError("仅支持从编辑模式切换到主页")
-        close_btn = self.app.GroupControl(searchDepth=1, ClassName="TitleBarButton", foundIndex=3)
-        close_btn.Click(simulateMove=False)
-        time.sleep(2)
-        self.get_window()
-
-    def get_window(self) -> None:
-        """寻找剪映窗口并置顶"""
-        if hasattr(self, "app") and self.app.Exists(0):
-            self.app.SetTopmost(False)
-
-        self.app = uia.WindowControl(searchDepth=1, Compare=self.__jianying_window_cmp)
-        if not self.app.Exists(0):
-            raise AutomationError("剪映窗口未找到")
-
-        # 寻找可能存在的导出窗口
-        export_window = self.app.WindowControl(searchDepth=1, Name="导出")
-        if export_window.Exists(0):
-            self.app = export_window
-            self.app_status = "pre_export"
-
-        self.app.SetActive()
-        self.app.SetTopmost()
-
-    def __jianying_window_cmp(self, control: uia.WindowControl, depth: int) -> bool:
-        if control.Name != "剪映专业版":
-            return False
-        if "HomePage".lower() in control.ClassName.lower():
-            self.app_status = "home"
-            return True
-        if "MainWindow".lower() in control.ClassName.lower():
-            self.app_status = "edit"
-            return True
-        return False
+        
+        try:
+            with open(settings_file, 'r', encoding='utf-8') as f:
+                first_line = f.readline()
+                if first_line.strip().startswith('['):  # INI格式
+                    logger.warning(f"导出设置文件为INI格式，无法自动设置分辨率/帧率: {settings_file}")
+                    return
+                f.seek(0)
+                try:
+                    settings = json.load(f)
+                except json.JSONDecodeError:
+                    logger.warning(f"导出设置文件不是合法JSON，跳过分辨率/帧率设置: {settings_file}")
+                    return
+                
+            if resolution is not None:
+                settings['export_resolution'] = resolution.value
+                logger.info(f"设置导出分辨率: {resolution.value}")
+            if framerate is not None:
+                settings['export_framerate'] = framerate.value
+                logger.info(f"设置导出帧率: {framerate.value}")
+                
+            with open(settings_file, 'w', encoding='utf-8') as f:
+                json.dump(settings, f, ensure_ascii=False, indent=2)
+                
+        except (KeyError, IOError) as e:
+            raise AutomationError(f"更新导出设置失败: {str(e)}")

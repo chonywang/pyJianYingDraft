@@ -1,0 +1,100 @@
+{
+    "draft_name": "my_awesome_video",
+    "drafts_root": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts",
+    "template_folder": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts/Draft Template Old",
+    "resolution": {
+        "width": 1920,
+        "height": 1080
+    },
+    "jianying_version": "3.1.0-beta7",
+    "videos": [
+        {
+            "file_path": "https://s.coze.cn/t/kc9ZNIMZhuU",
+            "start": "0s",
+            "duration": "5s",
+            "target_start": "0s",
+            "transition": "上移",
+            "effects": [
+                {
+                    "effect_id": "负片频闪",
+                    "start": "0s",
+                    "duration": "5s"
+                }
+            ]
+        },
+        {
+            "file_path": "https://s.coze.cn/t/kc9ZNIMZhuU",
+            "start": "0s",
+            "duration": "5s",
+            "target_start": "5s",
+            "transition": "闪白",
+            "effects": [
+                {
+                    "effect_id": "故障",
+                    "start": "0s",
+                    "duration": "5s"
+                }
+            ]
+        },
+        {
+            "file_path": "https://s.coze.cn/t/kc9ZNIMZhuU",
+            "start": "0s",
+            "duration": "5s",
+            "target_start": "10s",
+            "transition": "叠化",
+            "effects": [
+                {
+                    "effect_id": "金粉闪闪",
+                    "start": "0s",
+                    "duration": "5s"
+                }
+            ]
+        }
+    ],
+    "audio": [
+        {
+            "url": "https://lf3-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_601b6568-4079-493c-afd0-79490005c2a0.mp3?lk3s=da27ec82&x-expires=1747119088&x-signature=eRtAjidgqT5GgBoAQ7gt8qd349M%3D",
+            "enabled": true,
+            "volume": 1.0,
+            "start": "0s"
+        },
+        {
+            "url": "https://lf26-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_8e36d116-983e-4ef4-ad5f-0b51c946741f.mp3?lk3s=da27ec82&x-expires=1747116985&x-signature=02p4jTHBNdMR0zFI%2FBa8z761MbY%3D",
+            "enabled": true,
+            "volume": 0.8,
+            "start": "5s"
+        }
+    ],
+    "texts": [
+        {
+            "text": "第一段视频：负片频闪特效 + 上移转场",
+            "start": "0s",
+            "duration": "5s",
+            "font": "后现代体",
+            "style": {"color": [1.0, 1.0, 0.0]},
+            "animation": "故障闪动",
+            "animation_duration": "1s",
+            "position": {"x": 0, "y": -0.8}
+        },
+        {
+            "text": "第二段视频：故障特效 + 闪白转场",
+            "start": "5s",
+            "duration": "5s",
+            "font": "后现代体",
+            "style": {"color": [1.0, 0.5, 0.0]},
+            "animation": "故障闪动",
+            "animation_duration": "1s",
+            "position": {"x": 0, "y": -0.8}
+        },
+        {
+            "text": "第三段视频：金粉闪闪特效 + 叠化转场",
+            "start": "10s",
+            "duration": "5s",
+            "font": "后现代体",
+            "style": {"color": [0.0, 1.0, 1.0]},
+            "animation": "故障闪动",
+            "animation_duration": "1s",
+            "position": {"x": 0, "y": -0.8}
+        }
+    ]
+} 
