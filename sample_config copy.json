@@ -74,7 +74,7 @@
             "font": "后现代体",
             "style": {
                 "color": [1.0, 1.0, 0.0],
-                "size": 36
+                "size": 15
             },
             "position": {
                 "x": 0.5,
@@ -90,7 +90,7 @@
             "font": "后现代体",
             "style": {
                 "color": [1.0, 0.5, 0.0],
-                "size": 36
+                "size": 12
             },
             "position": {
                 "x": 0.5,
@@ -106,63 +106,13 @@
             "font": "后现代体",
             "style": {
                 "color": [0.0, 1.0, 1.0],
-                "size": 36
+                "size": 8
             },
             "position": {
                 "x": 0.5,
                 "y": 0.907
             },
-            "intro_animation": "随机打字机",
-            "outro_animation": "滑动下落"
-        }
-    ],
-    "translated_texts": [
-        {
-            "text": "First video: Negative flash effect + Upward transition",
-            "start": "0s",
-            "duration": "5s",
-            "font": "后现代体",
-            "style": {
-                "color": [0.5, 0.8, 1.0],
-                "size": 28
-            },
-            "position": {
-                "x": 0.5,
-                "y": 0.807
-            },
-            "intro_animation": "随机打字机",
-            "outro_animation": "滑动下落"
-        },
-        {
-            "text": "Second video: Glitch effect + White flash transition",
-            "start": "5s",
-            "duration": "5s",
-            "font": "后现代体",
-            "style": {
-                "color": [0.5, 0.8, 1.0],
-                "size": 28
-            },
-            "position": {
-                "x": 0.5,
-                "y": 0.807
-            },
-            "intro_animation": "随机打字机",
-            "outro_animation": "滑动下落"
-        },
-        {
-            "text": "Third video: Golden sparkle effect + Dissolve transition",
-            "start": "10s",
-            "duration": "5s",
-            "font": "后现代体",
-            "style": {
-                "color": [0.5, 0.8, 1.0],
-                "size": 28
-            },
-            "position": {
-                "x": 0.5,
-                "y": 0.807
-            },
-            "intro_animation": "随机打字机",
+           "intro_animation": "随机打字机",
             "outro_animation": "滑动下落"
         }
     ]

@@ -8,7 +8,7 @@ JianYing Draft Creator - 模块化、可配置的剪映草稿创建工具
 - 支持从配置文件或命令行参数创建草稿
 - 支持添加多段视频、转场效果
 - 支持添加音频(网络或本地)
-- 支持添加文本
+- 支持添加文本(支持中英双语字幕)
 - 完整的日志记录
 - 错误处理和恢复
 """
@@ -25,11 +25,15 @@ import tempfile
 import subprocess
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
+import random
+import hashlib
 
 # 添加项目根目录到路径
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-# 对于当前目录的项目，已经在正确路径上
-# 无需额外添加路径
+sys.path.append(PROJECT_ROOT)
+
+# 配置文件路径
+CONFIG_FILE = os.path.join(PROJECT_ROOT, "config.json")
 
 # 导入JianYing相关库
 try:
@@ -67,6 +71,85 @@ logging.basicConfig(
 )
 logger = logging.getLogger("JianYingDraftCreator")
 
+# 加载配置文件
+def load_api_config() -> Dict:
+    """加载API配置
+    
+    Returns:
+        包含API配置的字典
+    """
+    try:
+        if os.path.exists(CONFIG_FILE):
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        else:
+            logger.warning(f"配置文件不存在: {CONFIG_FILE}")
+            return {}
+    except Exception as e:
+        logger.error(f"加载配置文件失败: {str(e)}")
+        return {}
+
+def translate_text(text: str) -> str:
+    """使用百度翻译API将中文翻译为英文
+    
+    Args:
+        text: 要翻译的中文文本
+        
+    Returns:
+        翻译后的英文文本
+    """
+    try:
+        # 从配置文件加载API凭据
+        config = load_api_config()
+        translate_config = config.get("translate_api", {}).get("baidu", {})
+        
+        appid = translate_config.get("app_id")
+        secret_key = translate_config.get("secret_key")
+
+        if not appid or not secret_key:
+            logger.warning("未在配置文件中找到百度翻译API凭据，将返回原文")
+            return text
+
+        # API endpoint
+        url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
+        
+        # 生成随机数
+        salt = str(random.randint(32768, 65536))
+        
+        # 生成签名
+        sign = appid + text + salt + secret_key
+        sign = hashlib.md5(sign.encode()).hexdigest()
+        
+        # 构建请求参数
+        params = {
+            'appid': appid,
+            'q': text,
+            'from': 'zh',
+            'to': 'en',
+            'salt': salt,
+            'sign': sign
+        }
+        
+        # 发送请求
+        response = requests.get(url, params=params)
+        result = response.json()
+        
+        if 'trans_result' in result:
+            # 获取翻译结果
+            translated = result['trans_result'][0]['dst']
+            logger.info(f"翻译成功: {text} -> {translated}")
+            return translated
+        else:
+            # 如果翻译失败，记录错误并返回原文
+            error_msg = result.get('error_msg', '未知错误')
+            logger.warning(f"翻译失败: {error_msg}")
+            return text
+            
+    except Exception as e:
+        logger.error(f"翻译出错: {str(e)}")
+        # 如果出错，返回原文
+        return text
+
 # 默认配置
 DEFAULT_CONFIG = {
     "draft_name": "auto_generated_draft",
@@ -89,7 +172,8 @@ DEFAULT_CONFIG = {
             "start": "0s"      # 音频开始时间
         }
     ],
-    "texts": []
+    "texts": [],
+    "translated_texts": []  # 新增翻译字幕配置
 }
 
 class JianYingDraftCreator:
@@ -223,7 +307,8 @@ class JianYingDraftCreator:
             draft_params = [{
                 "draft_name": self.draft_name,
                 "videos": video_files,
-                "texts": self.config.get("texts", [])
+                "texts": self.config.get("texts", []),
+                "translated_texts": self.config.get("translated_texts", [])  # 添加翻译字幕参数
             }]
             
             # 尝试找到模板目录
@@ -241,14 +326,60 @@ class JianYingDraftCreator:
             # 查找实际的草稿目录
             self._find_actual_draft_path()
             
+            # 如果有字幕配置但没有翻译字幕，自动生成翻译
+            if self.config.get("texts") and not self.config.get("translated_texts"):
+                logger.info("开始生成翻译字幕...")
+                translated_texts = []
+                for text in self.config["texts"]:
+                    # 复制原始文本配置
+                    translated_text = text.copy()
+                    # 翻译文本
+                    translated = translate_text(text["text"])
+                    if translated != text["text"]:  # 只有翻译成功时才添加
+                        translated_text["text"] = translated
+                        # 调整Y轴位置，显示在原字幕上方
+                        if "position" in translated_text:
+                            translated_text["position"] = translated_text["position"].copy()
+                            # 假设原字幕在底部，翻译字幕在其上方
+                            if isinstance(translated_text["position"]["y"], float):
+                                translated_text["position"]["y"] = max(0.1, translated_text["position"]["y"] - 0.1)
+                            else:
+                                translated_text["position"]["y"] = max(100, translated_text["position"]["y"] - 100)
+                        else:
+                            translated_text["position"] = {"x": 0.5, "y": 0.807}
+                        
+                        # 设置样式
+                        if "style" in translated_text:
+                            translated_text["style"] = translated_text["style"].copy()
+                            # 翻译字幕可以使用稍小的字号
+                            if "size" in translated_text["style"]:
+                                translated_text["style"]["size"] = translated_text["style"]["size"] * 0.8
+                            # 使用不同的颜色区分
+                            translated_text["style"]["color"] = [0.8, 0.8, 1.0]  # 淡蓝色
+                        else:
+                            translated_text["style"] = {
+                                "color": [0.8, 0.8, 1.0],  # 淡蓝色
+                                "size": 28  # 默认字号
+                            }
+                        
+                        translated_texts.append(translated_text)
+                        logger.info(f"已生成翻译: {text['text']} -> {translated}")
+                
+                if translated_texts:
+                    self.config["translated_texts"] = translated_texts
+                    logger.info(f"成功生成 {len(translated_texts)} 个翻译字幕")
+                else:
+                    logger.warning("未能生成任何有效的翻译字幕")
+            
             # 处理完整的草稿参数
             draft_data = {
                 "videos": video_files,
                 "texts": self.config.get("texts", []),
+                "translated_texts": self.config.get("translated_texts", []),
                 "audio": self.config.get("audio", [])
             }
             
-            # 将音频直接添加到初始草稿中 - 使用更简单的方法
+            # 将音频直接添加到初始草稿中
             if any(audio.get("enabled", False) for audio in self.config.get("audio", [])):
                 if self._process_audio_with_demo_method(draft_data, self.actual_draft_path):
                     logger.info("音频处理成功")
@@ -612,6 +743,34 @@ def parse_args():
     
     return parser.parse_args()
 
+def deep_merge_configs(default_config: Dict, user_config: Dict) -> Dict:
+    """深度合并两个配置字典
+    
+    Args:
+        default_config: 默认配置字典
+        user_config: 用户配置字典
+        
+    Returns:
+        合并后的配置字典
+    """
+    result = default_config.copy()
+    
+    print(f"[DEBUG] 开始合并配置")
+    print(f"[DEBUG] 默认配置: {json.dumps(result, ensure_ascii=False)}")
+    print(f"[DEBUG] 用户配置: {json.dumps(user_config, ensure_ascii=False)}")
+    
+    for key, value in user_config.items():
+        print(f"[DEBUG] 处理配置项: {key}")
+        if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+            print(f"[DEBUG] 合并字典: {key}")
+            result[key] = deep_merge_configs(result[key], value)
+        else:
+            print(f"[DEBUG] 直接替换: {key}")
+            result[key] = value
+    
+    print(f"[DEBUG] 合并后的配置: {json.dumps(result, ensure_ascii=False)}")
+    return result
+
 def main():
     """主函数"""
     args = parse_args()
@@ -627,7 +786,9 @@ def main():
     # 从配置文件加载（如果提供）
     if args.config:
         file_config = load_config(args.config)
-        config.update(file_config)
+        logger.info(f"从配置文件加载的内容: {json.dumps(file_config, ensure_ascii=False)}")
+        config = deep_merge_configs(config, file_config)
+        logger.info(f"合并后的配置: {json.dumps(config, ensure_ascii=False)}")
     
     # 从命令行参数更新配置
     if args.name:
