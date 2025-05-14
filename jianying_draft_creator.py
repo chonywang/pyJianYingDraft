@@ -173,7 +173,8 @@ DEFAULT_CONFIG = {
         }
     ],
     "texts": [],
-    "translated_texts": []  # 新增翻译字幕配置
+    "translated_texts": [],  # 新增翻译字幕配置
+    "text_tracks": []  # 新增文字轨道配置
 }
 
 class JianYingDraftCreator:
@@ -307,8 +308,7 @@ class JianYingDraftCreator:
             draft_params = [{
                 "draft_name": self.draft_name,
                 "videos": video_files,
-                "texts": self.config.get("texts", []),
-                "translated_texts": self.config.get("translated_texts", [])  # 添加翻译字幕参数
+                "text_tracks": self.config.get("text_tracks", [])  # 使用新的 text_tracks 配置
             }]
             
             # 尝试找到模板目录

@@ -128,25 +128,47 @@ def create_draft_from_params(params, new_draft_folder):
     
     # 添加字幕轨道
     print(f"\n[DEBUG] ===== 检查字幕轨道创建条件 =====")
-    print(f"[DEBUG] texts 存在: {bool(params.get('texts'))}")
-    print(f"[DEBUG] translated_texts 存在: {bool(params.get('translated_texts'))}")
-    print(f"[DEBUG] translated_texts 内容: {params.get('translated_texts')}")
+    text_tracks = params.get("text_tracks", [])
+    print(f"[DEBUG] 发现 {len(text_tracks)} 个文字轨道配置")
     
-    if params.get("texts"):
-        print("[DEBUG] 创建主字幕轨道")
-        # 添加主字幕轨道
-        script.add_track(draft.Track_type.text, track_name="主字幕", relative_index=1)
-    
-    if params.get("translated_texts"):
-        print("[DEBUG] 创建翻译字幕轨道")
-        # 添加翻译字幕轨道，位于主字幕轨道上方
-        script.add_track(draft.Track_type.text, track_name="翻译字幕", relative_index=2)
-    
-    print(f"[DEBUG] ===== 字幕轨道创建完成 =====\n")
+    for track in text_tracks:
+        track_name = track.get("name", "未命名字幕")
+        relative_index = track.get("relative_index", 1)
+        print(f"[DEBUG] 创建文字轨道: {track_name} (相对位置: {relative_index})")
+        script.add_track(draft.Track_type.text, track_name=track_name, relative_index=relative_index)
     
     if params.get("filters"):
         print("[DEBUG] 创建滤镜轨道")
         script.add_track(draft.Track_type.filter)
+    
+    # 处理所有文字轨道的字幕
+    for track in text_tracks:
+        track_name = track.get("name", "未命名字幕")
+        print(f"\n[DEBUG] ===== 开始处理文字轨道: {track_name} =====")
+        texts = track.get("texts", [])
+        print(f"[DEBUG] 发现 {len(texts)} 个字幕")
+        
+        for text in texts:
+            print(f"\n[DEBUG] ----- 处理新的字幕 -----")
+            print(f"[DEBUG] 处理字幕: {text['text']}")
+            print(f"[DEBUG] 字幕时间: start={text.get('start')}, duration={text.get('duration')}")
+            print(f"[DEBUG] intro_animation: {text.get('intro_animation')}, outro_animation: {text.get('outro_animation')}")
+            
+            # 确保字幕有正确的位置设置
+            if "position" not in text:
+                text["position"] = {"x": 0.5, "y": 0.907}
+                print(f"[DEBUG] 使用默认位置设置: x={text['position']['x']}, y={text['position']['y']}")
+            else:
+                print(f"[DEBUG] 使用配置的位置设置: x={text['position']['x']}, y={text['position']['y']}")
+            
+            # 创建字幕片段
+            text_segment = create_text_segment(text, script, new_draft_folder)
+            if text_segment:
+                script.add_segment(text_segment, track_name)
+                print(f"[DEBUG] 已添加字幕到轨道: {track_name}")
+            else:
+                print(f"[ERROR] 创建字幕片段失败: {text['text']}")
+
     video_segments = []
     video_effects_data = []
     for audio in params.get("audios", []):
@@ -404,113 +426,6 @@ def create_draft_from_params(params, new_draft_folder):
             gif_segment.add_transition(getattr(Transition_type, gif["transition"]))
         video_segments.append(gif_segment)
         script.add_segment(gif_segment)
-    for text in params.get("texts", []):
-        print(f"[DEBUG] 处理主字幕: {text['text']}")
-        print(f"[DEBUG] intro_animation: {text.get('intro_animation')}, outro_animation: {text.get('outro_animation')}")
-        
-        # 创建文本片段
-        text_segment = create_text_segment(text, script, new_draft_folder)
-        
-        # 显式设置到主字幕轨道
-        if hasattr(text_segment, "track_name"):
-            text_segment.track_name = "主字幕"
-        elif hasattr(text_segment, "_data") and isinstance(text_segment._data, dict):
-            text_segment._data["track_name"] = "主字幕"
-        
-        # 添加到脚本
-        script.add_segment(text_segment, track_name="主字幕")
-        
-        print(f"[DEBUG] 主字幕已添加到轨道")
-
-    # 处理翻译字幕
-    print(f"\n[DEBUG] ===== 开始检查翻译字幕 =====")
-    print(f"[DEBUG] translated_texts 类型: {type(params.get('translated_texts'))}")
-    print(f"[DEBUG] translated_texts 值: {params.get('translated_texts')}")
-    
-    if params.get("translated_texts"):
-        print(f"\n[DEBUG] ===== 开始处理翻译字幕 =====")
-        print(f"[DEBUG] 发现 {len(params['translated_texts'])} 个翻译字幕")
-        
-        for text in params.get("translated_texts", []):
-            print(f"\n[DEBUG] ----- 处理新的翻译字幕 -----")
-            print(f"[DEBUG] 处理翻译字幕: {text['text']}")
-            print(f"[DEBUG] 字幕时间: start={text.get('start')}, duration={text.get('duration')}")
-            print(f"[DEBUG] intro_animation: {text.get('intro_animation')}, outro_animation: {text.get('outro_animation')}")
-            
-            # 确保翻译字幕有正确的位置设置
-            if "position" not in text:
-                text["position"] = {"x": 0.5, "y": 0.807}
-                print(f"[DEBUG] 使用默认位置设置: x={text['position']['x']}, y={text['position']['y']}")
-            else:
-                print(f"[DEBUG] 使用配置的位置设置: x={text['position']['x']}, y={text['position']['y']}")
-            
-            # 标记为翻译字幕
-            text["is_translation"] = True
-            print(f"[DEBUG] 已标记为翻译字幕")
-            
-            # 确保翻译字幕有正确的样式设置
-            if "style" not in text:
-                text["style"] = {
-                    "color": [0.5, 0.8, 1.0],  # 淡蓝色
-                    "size": 28  # 稍小的字号
-                }
-                print(f"[DEBUG] 使用默认样式设置: color={text['style']['color']}, size={text['style']['size']}")
-            else:
-                # 如果已有样式，确保颜色和大小符合翻译字幕规范
-                text["style"] = text["style"].copy()  # 创建副本避免修改原始数据
-                text["style"]["color"] = text["style"].get("color", [0.5, 0.8, 1.0])
-                text["style"]["size"] = text["style"].get("size", 28)
-                print(f"[DEBUG] 使用配置的样式设置: color={text['style']['color']}, size={text['style']['size']}")
-            
-            try:
-                # 创建文本片段
-                print(f"[DEBUG] 开始创建翻译字幕文本片段...")
-                text_segment = create_text_segment(text, script, new_draft_folder)
-                print(f"[DEBUG] 文本片段创建成功")
-                
-                # 显式设置到翻译字幕轨道
-                if hasattr(text_segment, "track_name"):
-                    text_segment.track_name = "翻译字幕"
-                elif hasattr(text_segment, "_data") and isinstance(text_segment._data, dict):
-                    text_segment._data["track_name"] = "翻译字幕"
-                print(f"[DEBUG] 已设置轨道名称为: 翻译字幕")
-                
-                # 添加到脚本
-                script.add_segment(text_segment, track_name="翻译字幕")
-                print(f"[DEBUG] 翻译字幕已成功添加到轨道")
-                
-                # 设置字体和大小
-                if hasattr(script.materials, "texts") and script.materials.texts:
-                    t = script.materials.texts[-1]
-                    if isinstance(t, dict):
-                        t["font_size"] = text["style"]["size"]
-                        t["font_name"] = text.get("font", "系统")
-                        print(f"[DEBUG] 已设置字体属性: size={t['font_size']}, font={t['font_name']}")
-                
-                print(f"[DEBUG] ----- 翻译字幕处理完成 -----\n")
-                
-            except Exception as e:
-                print(f"[ERROR] 处理翻译字幕时发生错误: {str(e)}")
-                import traceback
-                print(f"[ERROR] 错误详情:\n{traceback.format_exc()}")
-                raise
-        
-        print(f"[DEBUG] ===== 翻译字幕处理完成 =====\n")
-    else:
-        print(f"[DEBUG] 未找到翻译字幕配置\n")
-
-    filter_ids = {}
-    if params.get("filters"):
-        for filter_ in params.get("filters", []):
-            filter_type = getattr(Filter_type, filter_["filter_id"])
-            filter_segment = draft.Filter_segment(
-                filter_type,
-                trange(filter_.get("start", "0s"), filter_.get("duration", "5s")),
-                intensity=filter_.get("intensity", 100)
-            )
-            filter_id = filter_segment.material_id
-            filter_ids[filter_["filter_id"]] = filter_id
-            script.add_segment(filter_segment)
     script._video_effects_data = video_effects_data
     return script
 
