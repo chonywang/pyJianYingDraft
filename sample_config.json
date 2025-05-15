@@ -10,7 +10,7 @@
     "jianying_version": "3.1.0-beta7",
     "videos": [
         {
-            "file_path": "https://s.coze.cn/t/kc9ZNIMZhuU",
+            "file_path": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4",
             "start": "0s",
             "duration": "5s",
             "target_start": "0s",
@@ -24,7 +24,7 @@
             ]
         },
         {
-            "file_path": "https://s.coze.cn/t/kc9ZNIMZhuU",
+            "file_path": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
             "start": "0s",
             "duration": "5s",
             "target_start": "5s",
@@ -38,8 +38,8 @@
             ]
         },
         {
-            "file_path": "https://s.coze.cn/t/kc9ZNIMZhuU",
-            "start": "0s",
+            "file_path": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4",
+            "start": "5s",
             "duration": "5s",
             "target_start": "10s",
             "transition": "叠化",
@@ -54,16 +54,18 @@
     ],
     "audio": [
         {
-            "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_fe71b803-6347-48d0-8cd0-7d24132977c8.mp3?lk3s=da27ec82&x-expires=1747148030&x-signature=FTUVGk%2B6ZHGDLnCQgj9Os07gtSQ%3D",
+            "url": "https://lf3-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_0b2327d5-1c39-47af-bac6-7c3918e05b3e.mp3?lk3s=da27ec82&x-expires=1747299769&x-signature=ohPTBILHeDxLLisp5JAVdb%2BAMq0%3D",
             "enabled": true,
             "volume": 1.0,
-            "start": "0s"
+            "start": "0s",
+            "target_start": "0s"
         },
         {
-            "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_fe71b803-6347-48d0-8cd0-7d24132977c8.mp3?lk3s=da27ec82&x-expires=1747148030&x-signature=FTUVGk%2B6ZHGDLnCQgj9Os07gtSQ%3D",
+            "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_47a01f7b-06c6-41ba-9670-0d9832df8e32.mp3?lk3s=da27ec82&x-expires=1747299799&x-signature=9%2FxdJOdBhs7lJIMsK%2Bm4JJb9cK0%3D",
             "enabled": true,
-            "volume": 0.8,
-            "start": "5s"
+            "volume": 1,
+            "start": "5s",
+            "target_start": "5s"
         }
     ],
     "text_tracks": [

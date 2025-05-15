@@ -1,2 +1,6 @@
 pymediainfo
 imageio
+numpy
+Pillow
+moviepy
+ffmpeg-python
