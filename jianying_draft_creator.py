@@ -27,6 +27,7 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
 import random
 import hashlib
+from url_utils import resolve_short_url, is_short_url
 
 # 添加项目根目录到路径
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -180,13 +181,18 @@ DEFAULT_CONFIG = {
 class JianYingDraftCreator:
     """JianYing草稿创建器"""
     
-    def __init__(self, config: Dict):
+    def __init__(self, config: Dict, template_config: Optional[Dict] = None):
         """初始化创建器
         
         Args:
             config: 包含所有配置选项的字典
+            template_config: 可选的模板配置字典
         """
-        self.config = self._validate_and_fill_config(config)
+        # 如果提供了模板配置，先合并配置
+        if template_config:
+            self.config = self._merge_with_template(config, template_config)
+        else:
+            self.config = self._validate_and_fill_config(config)
         
         # 创建草稿文件夹
         self.timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -197,6 +203,25 @@ class JianYingDraftCreator:
         # 初始化资源列表
         self.downloaded_files = []
         logger.info(f"草稿将保存到: {self.draft_path}")
+    
+    def _merge_with_template(self, user_config: Dict, template_config: Dict) -> Dict:
+        """将用户配置与模板配置合并
+        
+        Args:
+            user_config: 用户提供的配置
+            template_config: 模板配置
+            
+        Returns:
+            合并后的配置
+        """
+        # 首先获取一个基础配置
+        base_config = self._validate_and_fill_config({})
+        
+        # 然后依次合并模板配置和用户配置
+        merged = deep_merge_configs(base_config, template_config)
+        final_config = deep_merge_configs(merged, user_config)
+        
+        return final_config
     
     def _validate_and_fill_config(self, config: Dict) -> Dict:
         """验证配置并填充默认值
@@ -287,6 +312,8 @@ class JianYingDraftCreator:
                     video_path = video_config["file_path"]
                     # 检查是否是URL
                     if video_path.startswith(("http://", "https://")):
+                        if is_short_url(video_path):
+                            video_path = resolve_short_url(video_path)
                         downloaded_path = self.download_file(video_path)
                         if downloaded_path:
                             video_config["local_file_path"] = downloaded_path
@@ -782,13 +809,31 @@ def main():
     
     # 初始化配置
     config = DEFAULT_CONFIG.copy()
+    template_config = None
     
     # 从配置文件加载（如果提供）
     if args.config:
         file_config = load_config(args.config)
-        logger.info(f"从配置文件加载的内容: {json.dumps(file_config, ensure_ascii=False)}")
-        config = deep_merge_configs(config, file_config)
-        logger.info(f"合并后的配置: {json.dumps(config, ensure_ascii=False)}")
+        logger.info(f"从配置文件加载的原始内容: {json.dumps(file_config, ensure_ascii=False)}")
+        
+        # 处理配置中短链
+        for video in file_config.get("videos", []):
+            if video.get("file_path") and is_short_url(video.get("file_path")):
+                try:
+                    original_url = video["file_path"]
+                    resolved_url = resolve_short_url(video["file_path"])
+                    video["file_path"] = resolved_url
+                    logger.info(f"已解析短链: {original_url} -> {resolved_url}")
+                except Exception as e:
+                    logger.error(f"解析短链失败 {video['file_path']}: {str(e)}")
+        
+        config = file_config
+    
+    # 加载模板配置（如果存在）
+    template_path = "template_config.json"
+    if os.path.exists(template_path):
+        template_config = load_config(template_path)
+        logger.info("已加载模板配置")
     
     # 从命令行参数更新配置
     if args.name:
@@ -848,46 +893,11 @@ def main():
         return
     
     # 创建并运行生成器
-    creator = JianYingDraftCreator(config)
+    creator = JianYingDraftCreator(config, template_config)
     draft_path = creator.create_draft()
     
-    # 自动提取 animation_table
-    if draft_path:
-        draft_content_path = os.path.join(draft_path, "draft_content.json")
-        if os.path.exists(draft_content_path):
-            try:
-                with open(draft_content_path, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                animation_table = {}
-                for anim in data.get("materials", {}).get("material_animations", []):
-                    for a in anim.get("animations", []):
-                        name = a.get("name")
-                        if name and name not in animation_table:
-                            animation_table[name] = {
-                                "resource_id": a.get("resource_id"),
-                                "duration": a.get("duration"),
-                                "path": a.get("path")
-                            }
-                anim_table_path = os.path.join(draft_path, "animation_table.py")
-                with open(anim_table_path, "w", encoding="utf-8") as f:
-                    f.write("animation_table = {\n")
-                    for k, v in animation_table.items():
-                        f.write(f'    "{k}": {{\n')
-                        f.write(f'        "resource_id": "{v["resource_id"]}",\n')
-                        f.write(f'        "duration": {v["duration"]},\n')
-                        f.write(f'        "path": "{v["path"]}"\n')
-                        f.write("    },\n")
-                    f.write("}\n")
-                print(f"\n📝 已自动提取 animation_table 并保存到: {anim_table_path}")
-            except Exception as e:
-                print(f"自动提取 animation_table 失败: {e}")
-    
-    if draft_path:
-        print(f"\n✅ 成功创建草稿")
-        print(f"📁 草稿路径: {draft_path}")
-        print(f"🎬 请在剪映中打开并查看")
-    else:
-        print("\n❌ 创建草稿失败，请查看日志了解详情")
+    print(f"\n草稿已创建: {draft_path}")
+    print("请在剪映中打开此草稿文件夹继续编辑")
 
 if __name__ == "__main__":
     main() 

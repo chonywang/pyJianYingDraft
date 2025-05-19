@@ -4,3 +4,4 @@ numpy
 Pillow
 moviepy
 ffmpeg-python
+requests>=2.31.0

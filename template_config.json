@@ -1,16 +1,17 @@
 {
     "_position说明": "position.x/y 支持相对位置（0~1，左上角为0,0，右下角为1,1），推荐字幕底部居中用 x:0.5, y:0.907",
+    "_style说明": "style支持以下属性：size(字体大小), bold(是否加粗), italic(是否斜体), underline(是否下划线), color(RGB颜色值), alpha(不透明度), align(对齐方式:0=左对齐,1=居中,2=右对齐), vertical(是否竖排), letter_spacing(字符间距), line_spacing(行间距)",
     "draft_name": "my_awesome_video",
     "drafts_root": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts",
     "template_folder": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts/Draft Template Old",
     "resolution": {
-        "width": 1920,
-        "height": 1080
+        "width": 1080,
+        "height": 1920
     },
     "jianying_version": "3.1.0-beta7",
     "videos": [
         {
-            "file_path": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4",
+            "file_path": "https://s.coze.cn/t/yoqrdjZwo7E/",
             "start": "0s",
             "duration": "5s",
             "target_start": "0s",
@@ -79,15 +80,28 @@
                     "duration": "5s",
                     "font": "后现代体",
                     "style": {
-                        "color": [1.0, 1.0, 0.0],
-                        "size": 36
+                        "color": [0, 0, 0],
+                        "size": 10,
+                        "bold": true,
+                        "italic": false,
+                        "underline": false,
+                        "alpha": 1.0,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 0,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
-                        "y": 0.907
+                        "y": 0.707
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 10,
+                        "en_words": 3
+                    }
                 },
                 {
                     "text": "第二段视频：故障特效 + 闪白转场",
@@ -95,15 +109,28 @@
                     "duration": "5s",
                     "font": "后现代体",
                     "style": {
-                        "color": [1.0, 0.5, 0.0],
-                        "size": 36
+                        "color": [0, 0, 0],
+                        "size": 36,
+                        "bold": true,
+                        "italic": false,
+                        "underline": false,
+                        "alpha": 1.0,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 0,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
                         "y": 0.907
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 8,
+                        "en_words": 3
+                    }
                 },
                 {
                     "text": "第三段视频：金粉闪闪特效 + 叠化转场",
@@ -111,15 +138,28 @@
                     "duration": "5s",
                     "font": "后现代体",
                     "style": {
-                        "color": [0.0, 1.0, 1.0],
-                        "size": 36
+                        "color": [0, 0, 0],
+                        "size": 36,
+                        "bold": true,
+                        "italic": false,
+                        "underline": false,
+                        "alpha": 1.0,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 0,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
                         "y": 0.907
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 8,
+                        "en_words": 3
+                    }
                 }
             ]
         },
@@ -133,15 +173,28 @@
                     "duration": "5s",
                     "font": "后现代体",
                     "style": {
-                        "color": [0.5, 0.8, 1.0],
-                        "size": 28
+                        "color": [0, 0, 0],
+                        "size": 8,
+                        "bold": false,
+                        "italic": false,
+                        "underline": true,
+                        "alpha": 0.9,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 1,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
-                        "y": 0.807
+                        "y": 0.907
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 8,
+                        "en_words": 3
+                    }
                 },
                 {
                     "text": "Second video: Glitch effect + White flash transition",
@@ -149,15 +202,28 @@
                     "duration": "5s",
                     "font": "后现代体",
                     "style": {
-                        "color": [0.5, 0.8, 1.0],
-                        "size": 28
+                        "color": [0, 0, 0],
+                        "size": 28,
+                        "bold": false,
+                        "italic": false,
+                        "underline": true,
+                        "alpha": 0.9,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 1,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
                         "y": 0.807
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 8,
+                        "en_words": 3
+                    }
                 },
                 {
                     "text": "Third video: Golden sparkle effect + Dissolve transition",
@@ -165,15 +231,28 @@
                     "duration": "5s",
                     "font": "后现代体",
                     "style": {
-                        "color": [0.5, 0.8, 1.0],
-                        "size": 28
+                        "color": [0, 0, 0],
+                        "size": 28,
+                        "bold": false,
+                        "italic": false,
+                        "underline": true,
+                        "alpha": 0.9,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 1,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
                         "y": 0.807
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 8,
+                        "en_words": 3
+                    }
                 }
             ]
         },
@@ -187,15 +266,28 @@
                     "duration": "3s",
                     "font": "后现代体",
                     "style": {
-                        "color": [0.8, 0.8, 0.8],
-                        "size": 24
+                        "color": [0, 0, 0],
+                        "size": 24,
+                        "bold": false,
+                        "italic": true,
+                        "underline": false,
+                        "alpha": 0.8,
+                        "align": 0,
+                        "vertical": false,
+                        "letter_spacing": 0,
+                        "line_spacing": 0
                     },
                     "position": {
                         "x": 0.5,
-                        "y": 0.707
+                        "y": 0.907
                     },
                     "intro_animation": "随机打字机",
-                    "outro_animation": "滑动下落"
+                    "outro_animation": "滑动下落",
+                    "linebreak": {
+                        "mode": "manual",
+                        "zh_length": 8,
+                        "en_words": 3
+                    }
                 }
             ]
         }

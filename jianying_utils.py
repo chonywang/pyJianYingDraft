@@ -13,6 +13,7 @@ from pyJianYingDraft import Intro_type, Transition_type, trange, tim
 from pyJianYingDraft.metadata.video_effect_meta import Video_scene_effect_type
 from pyJianYingDraft.metadata.filter_meta import Filter_type
 from pyJianYingDraft.metadata import Text_intro, Text_outro, Text_loop_anim
+import re
 
 # 动画查找表自动导入
 try:
@@ -429,6 +430,37 @@ def create_draft_from_params(params, new_draft_folder):
     script._video_effects_data = video_effects_data
     return script
 
+def auto_linebreak_text(text, linebreak_cfg=None):
+    """
+    根据配置对中英文文本自动换行。
+    linebreak_cfg: dict, 可包含 'mode', 'zh_length', 'en_words'
+    """
+    if not text:
+        return text
+    # 默认规则
+    zh_length = 10
+    en_words = 4
+    if linebreak_cfg:
+        zh_length = int(linebreak_cfg.get('zh_length', zh_length))
+        en_words = int(linebreak_cfg.get('en_words', en_words))
+    # 判断是否为中文（大部分为汉字）
+    zh_count = len(re.findall(r'[\u4e00-\u9fff]', text))
+    en_count = len(re.findall(r'[A-Za-z]', text))
+    if zh_count >= en_count:
+        # 中文：每 zh_length 个字换行
+        chars = list(text)
+        lines = []
+        for i in range(0, len(chars), zh_length):
+            lines.append(''.join(chars[i:i+zh_length]))
+        return '\n'.join(lines)
+    else:
+        # 英文：每 en_words 个单词换行
+        words = text.split()
+        lines = []
+        for i in range(0, len(words), en_words):
+            lines.append(' '.join(words[i:i+en_words]))
+        return '\n'.join(lines)
+
 def create_text_segment(text, script, new_draft_folder):
     """创建文本片段
     
@@ -453,16 +485,20 @@ def create_text_segment(text, script, new_draft_folder):
     
     # 如果是翻译字幕，应用特殊样式和位置偏移
     is_translation = text.get("is_translation", False)
+    style = text.get("style", {})
+    font_size = style.get("size", 28 if is_translation else 36)
+    color = tuple(style.get("color", (0.5, 0.8, 1.0) if is_translation else (1.0, 1.0, 1.0)))
+    bold = style.get("bold", False)
+    italic = style.get("italic", False)
+    underline = style.get("underline", False)
+    alpha = style.get("alpha", 1.0)
+    align = style.get("align", 1)
+    vertical = style.get("vertical", False)
+    letter_spacing = style.get("letter_spacing", 0)
+    line_spacing = style.get("line_spacing", 0)
+    # 向上偏移60像素（可以根据需要调整）
     if is_translation:
-        # 翻译字幕默认样式：较小字号，浅蓝色
-        font_size = text.get("style", {}).get("size", 28)  # 默认28号字体
-        color = text.get("style", {}).get("color", (0.5, 0.8, 1.0))  # 浅蓝色
-        # 向上偏移60像素（可以根据需要调整）
         y = y - 60
-    else:
-        # 原文字幕默认样式
-        font_size = text.get("style", {}).get("size", 36)  # 默认36号字体
-        color = text.get("style", {}).get("color", (1.0, 1.0, 1.0))  # 白色
     
     # 转换为以中心为原点，分母为画布宽/高，±0.5为边界
     transform_x = (x - canvas_w // 2) / canvas_w
@@ -473,7 +509,24 @@ def create_text_segment(text, script, new_draft_folder):
     print(f"[文本定位] is_translation: {is_translation}")
     print(f"[文本定位] position.x: {x}, position.y: {y}")
     print(f"[文本定位] transform_x: {transform_x}, transform_y: {transform_y}")
-    print(f"[文本定位] font_size: {font_size}, color: {color}")
+    print(f"[文本定位] font_size: {font_size}, color: {color}, bold: {bold}, italic: {italic}, underline: {underline}, alpha: {alpha}, align: {align}, vertical: {vertical}, letter_spacing: {letter_spacing}, line_spacing: {line_spacing}")
+
+    style_obj = draft.Text_style(
+        size=font_size,
+        bold=bold,
+        italic=italic,
+        underline=underline,
+        color=color,
+        alpha=alpha,
+        align=align,
+        vertical=vertical,
+        letter_spacing=letter_spacing,
+        line_spacing=line_spacing
+    )
+
+    # 自动换行处理
+    linebreak_cfg = text.get('linebreak')
+    text_content = auto_linebreak_text(text['text'], linebreak_cfg)
 
     if "Template Old" in new_draft_folder:
         text_style_id = str(uuid.uuid4()).replace("-", "")
@@ -490,13 +543,10 @@ def create_text_segment(text, script, new_draft_folder):
         script.materials.material_animations.append(text_style)
         
         text_segment = draft.Text_segment(
-            text["text"],
+            text_content,
             trange(text.get("start", "0s"), text.get("duration", "5s")),
             font=getattr(draft.Font_type, text.get("font", "默认")),
-            style=draft.Text_style(
-                color=color,
-                size=font_size
-            ),
+            style=style_obj,
             clip_settings=draft.Clip_settings(
                 transform_x=transform_x,
                 transform_y=transform_y
@@ -505,13 +555,10 @@ def create_text_segment(text, script, new_draft_folder):
         text_segment.extra_material_refs.append(text_style_id)
     else:
         text_segment = draft.Text_segment(
-            text["text"],
+            text_content,
             trange(text.get("start", "0s"), text.get("duration", "5s")),
             font=getattr(draft.Font_type, text.get("font", "默认")),
-            style=draft.Text_style(
-                color=color,
-                size=font_size
-            ),
+            style=style_obj,
             clip_settings=draft.Clip_settings(
                 transform_x=transform_x,
                 transform_y=transform_y

@@ -1,0 +1,1041 @@
+ {
+    "audio": [
+      {
+        "enabled": true,
+        "start": "0s",
+        "target_start": "0s",
+        "url": "https://lf9-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_c7935f4a-c866-48dd-b72d-137cd54a85b9.mp3?lk3s=da27ec82&x-expires=1747577382&x-signature=HGBx0hG6uU2gz7Zx7veDnN4omrI%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "7.848s",
+        "target_start": "7.848s",
+        "url": "https://lf3-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_26e7373f-c0a7-4d0c-9fed-fe26d74a100b.mp3?lk3s=da27ec82&x-expires=1747577406&x-signature=pE6mLj%2B1qdVITVjpIYiMJ%2FQTDOM%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "17.736s",
+        "target_start": "17.736s",
+        "url": "https://lf9-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_5b54046f-cf29-4216-9591-22959a02b899.mp3?lk3s=da27ec82&x-expires=1747577428&x-signature=zsEeCTbw0e%2Fqg%2FeIuuTsAJ9egbg%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "22.152s",
+        "target_start": "22.152s",
+        "url": "https://lf9-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_f758828a-87a8-45ef-ad8b-2307a50a07d8.mp3?lk3s=da27ec82&x-expires=1747577451&x-signature=l%2FapqeojlU18Ldirpwyy%2F0dw4GA%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "32.184s",
+        "target_start": "32.184s",
+        "url": "https://lf26-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_76d2f8f1-f4e8-46ee-904e-d7170bb962c2.mp3?lk3s=da27ec82&x-expires=1747577474&x-signature=9BCzt%2ByCqJTAsjm1qfcg556Hivg%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "41.592s",
+        "target_start": "41.592s",
+        "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_c0c547f4-45e6-4714-a7b9-2f83c892a257.mp3?lk3s=da27ec82&x-expires=1747577496&x-signature=36aBqBU%2FPGFL2SwnvxtIPdUfOw4%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "50.28s",
+        "target_start": "50.28s",
+        "url": "https://lf3-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_901da569-7aa2-4404-8e8a-e277f23c3e3a.mp3?lk3s=da27ec82&x-expires=1747577518&x-signature=RTuZ%2FDWIVL3eGW%2B1RQBDanVYbjQ%3D",
+        "volume": 1
+      },
+      {
+        "enabled": true,
+        "start": "57.048s",
+        "target_start": "57.048s",
+        "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_40af55c5-38c9-4078-acd2-f848574b0f91.mp3?lk3s=da27ec82&x-expires=1747577540&x-signature=Eb0qyKPMbRwrkXH141sH2f5HC5A%3D",
+        "volume": 1
+      }
+    ],
+    "draft_name": "coze_video",
+    "resolution": {
+      "height": 1920,
+      "width": 1080
+    },
+    "text_tracks": [
+      {
+        "name": "主字幕",
+        "relative_index": 1,
+        "texts": [
+          {
+            "duration": "3.924s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "0s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "姐妹们，翻化妆包像拆盲盒？"
+          },
+          {
+            "duration": "3.924s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "3.924s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "过期积灰断口红，带一堆却用不上！"
+          },
+          {
+            "duration": "4.944s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "7.848s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "化妆包臃肿俩原因：重复功能+冲动消费！"
+          },
+          {
+            "duration": "4.944s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "12.792s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "5支口红像双胞胎，12色眼影只爱2个。"
+          },
+          {
+            "duration": "4.416s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "17.736s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "精简不是扔东西，是留下'能打'的！"
+          },
+          {
+            "duration": "5.016s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "22.152s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "第一招功能替代！"
+          },
+          {
+            "duration": "5.016s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "27.168s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "腮紫=高光+腮红，多功能膏=眼影+口红，一支顶三支！"
+          },
+          {
+            "duration": "4.704s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "32.184s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "第二招使用率筛选！"
+          },
+          {
+            "duration": "4.704s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "36.888s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "三个月没用的放家里，留下日常款（比如酒红眼影vs大地色）。"
+          },
+          {
+            "duration": "4.344s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "41.592s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "第三招分装替换！"
+          },
+          {
+            "duration": "4.344s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "45.936s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "大瓶倒小瓶，眼影拆色块装小盒，轻便不怕摔！"
+          },
+          {
+            "duration": "3.384s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "50.28s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "化妆不是做加法，是找对核心单品！"
+          },
+          {
+            "duration": "3.384s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "53.664s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "整理后轻装上阵～"
+          },
+          {
+            "duration": "3.096s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "57.048s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "觉得有用点个赞！"
+          },
+          {
+            "duration": "3.096s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.807
+            },
+            "start": "60.144000000000005s",
+            "style": {
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "size": 10
+            },
+            "text": "评论区晒精简包，互相抄作业～"
+          }
+        ]
+      },
+      {
+        "name": "英文字幕",
+        "relative_index": 2,
+        "texts": [
+          {
+            "duration": "3.924s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "0s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Sisters, turning the makeup bag is like unpacking a blind box?"
+          },
+          {
+            "duration": "3.924s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "3.924s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Expired lipsticks covered in dust, brought a bunch but can't use them!"
+          },
+          {
+            "duration": "4.944s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "7.848s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Makeup bag bloated for two reasons: redundant functions + impulsive consumption!"
+          },
+          {
+            "duration": "4.944s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "12.792s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Five lipsticks are like twins, and I only love two out of the 12 eyeshadows."
+          },
+          {
+            "duration": "4.416s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "17.736s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Streamline is not about throwing things away, but about keeping what's 'capable'!"
+          },
+          {
+            "duration": "5.016s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "22.152s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "The first move: functional substitution!"
+          },
+          {
+            "duration": "5.016s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "27.168s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Cheek glow + blush, multi-functional cream = eyeshadow + lipstick, one tube is equivalent to three!"
+          },
+          {
+            "duration": "4.704s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "32.184s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "The second trick: usage rate filtering!"
+          },
+          {
+            "duration": "4.704s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "36.888s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Three months unused left at home, keeping the daily version (like wine red eye shadow vs. earth tone)."
+          },
+          {
+            "duration": "4.344s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "41.592s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Step 3: Disassembly and Replacement!"
+          },
+          {
+            "duration": "4.344s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "45.936s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Pour the large bottle into the small one, disassemble the eyeshadow into color blocks and pack them into a small box, lightweight and not easy to break!"
+          },
+          {
+            "duration": "3.384s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "50.28s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Makeup is not about adding, but about finding the right core single product!"
+          },
+          {
+            "duration": "3.384s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "53.664s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Lightly equipped and ready to go!"
+          },
+          {
+            "duration": "3.096s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "57.048s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Find it useful? Give it a like!"
+          },
+          {
+            "duration": "3.096s",
+            "font": "后现代体",
+            "intro_animation": "随机打字机",
+            "linebreak": {
+              "en_words": 7,
+              "mode": "manual",
+              "zh_length": 15
+            },
+            "outro_animation": "滑动下落",
+            "position": {
+              "x": 0.5,
+              "y": 0.907
+            },
+            "start": "60.144000000000005s",
+            "style": {
+              "align": 0,
+              "alpha": 0.9,
+              "bold": false,
+              "color": [
+                0,
+                0,
+                0
+              ],
+              "italic": false,
+              "letter_spacing": 1,
+              "line_spacing": 0,
+              "size": 8,
+              "underline": true,
+              "vertical": false
+            },
+            "text": "Leave comments to show the concise package, and copy each other's homework ~"
+          }
+        ]
+      }
+    ],
+    "videos": [
+      {
+        "duration": "3.924s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/32bee470ea584ccea4bbaee95b3d3c2e.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677780&x-signature=pYP3V4wKhf1WFNXk7q3rdv%2BjEi4%3D",
+        "start": "0s",
+        "target_start": "0s"
+      },
+      {
+        "duration": "3.924s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/32bee470ea584ccea4bbaee95b3d3c2e.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677780&x-signature=pYP3V4wKhf1WFNXk7q3rdv%2BjEi4%3D",
+        "start": "3.924s",
+        "target_start": "3.924s"
+      },
+      {
+        "duration": "4.944s",
+        "file_path": "https://p26-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/569c18b3d4f94a46ab53c867310b92d9.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677804&x-signature=4%2Fwv3vvQ6BOnjV77G1RTeFidfd8%3D",
+        "start": "7.848s",
+        "target_start": "7.848s"
+      },
+      {
+        "duration": "4.944s",
+        "file_path": "https://p26-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/569c18b3d4f94a46ab53c867310b92d9.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677804&x-signature=4%2Fwv3vvQ6BOnjV77G1RTeFidfd8%3D",
+        "start": "12.792s",
+        "target_start": "12.792s"
+      },
+      {
+        "duration": "4.416s",
+        "file_path": "https://p26-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/9f396e4d9b764c0fae5aeab45c782e6d.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677827&x-signature=iKZdRruzMVE5eoHi7R51%2Bz0dfYk%3D",
+        "start": "17.736s",
+        "target_start": "17.736s"
+      },
+      {
+        "duration": "5.016s",
+        "file_path": "https://p9-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/26445a257e284acfadfde755ec650ef6.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677849&x-signature=Jc5XuAM772l01HdKA13OKHq8PHg%3D",
+        "start": "22.152s",
+        "target_start": "22.152s"
+      },
+      {
+        "duration": "5.016s",
+        "file_path": "https://p9-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/26445a257e284acfadfde755ec650ef6.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677849&x-signature=Jc5XuAM772l01HdKA13OKHq8PHg%3D",
+        "start": "27.168s",
+        "target_start": "27.168s"
+      },
+      {
+        "duration": "4.704s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/e0b829b8a6444f82bbe45ad41813ddd6.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677872&x-signature=K5ysOluS8Q%2B%2BZ2VnaAi49Eq1pZY%3D",
+        "start": "32.184s",
+        "target_start": "32.184s"
+      },
+      {
+        "duration": "4.704s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/e0b829b8a6444f82bbe45ad41813ddd6.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677872&x-signature=K5ysOluS8Q%2B%2BZ2VnaAi49Eq1pZY%3D",
+        "start": "36.888s",
+        "target_start": "36.888s"
+      },
+      {
+        "duration": "4.344s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/1ce4a235b96b4aa4a777a65614a95441.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677894&x-signature=5sTS90A6FQk9o42BjVYHWMNIzFk%3D",
+        "start": "41.592s",
+        "target_start": "41.592s"
+      },
+      {
+        "duration": "4.344s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/1ce4a235b96b4aa4a777a65614a95441.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677894&x-signature=5sTS90A6FQk9o42BjVYHWMNIzFk%3D",
+        "start": "45.936s",
+        "target_start": "45.936s"
+      },
+      {
+        "duration": "3.384s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/755b41a0db7c4765a27d26100d3cf355.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677917&x-signature=hzw4dIMMZitA%2BteZdUU1hOEaipM%3D",
+        "start": "50.28s",
+        "target_start": "50.28s"
+      },
+      {
+        "duration": "3.384s",
+        "file_path": "https://p3-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/755b41a0db7c4765a27d26100d3cf355.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677917&x-signature=hzw4dIMMZitA%2BteZdUU1hOEaipM%3D",
+        "start": "53.664s",
+        "target_start": "53.664s"
+      },
+      {
+        "duration": "3.096s",
+        "file_path": "https://p9-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/1c39eda9ab674132b15dde91dba74564.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677939&x-signature=3zCZH7sj2rklZFKoopl1otAd0KA%3D",
+        "start": "57.048s",
+        "target_start": "57.048s"
+      },
+      {
+        "duration": "3.096s",
+        "file_path": "https://p9-bot-workflow-sign.byteimg.com/tos-cn-i-mdko3gqilj/1c39eda9ab674132b15dde91dba74564.png~tplv-mdko3gqilj-image.png?rk3s=c8fe7ad5&x-expires=1778677939&x-signature=3zCZH7sj2rklZFKoopl1otAd0KA%3D",
+        "start": "60.144000000000005s",
+        "target_start": "60.144000000000005s"
+      }
+    ]
+  }

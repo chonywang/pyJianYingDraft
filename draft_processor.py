@@ -26,7 +26,7 @@ class DraftProcessor:
 
     def load_draft(self):
         """加载草稿文件"""
-        draft_content_path = os.path.join(self.draft_path, "draft_content.json")
+        draft_content_path = os.path.join(self.draft_path, "template_config.json")
         if not os.path.exists(draft_content_path):
             draft_content_path = "sample_config.json"  # 尝试使用示例配置
             

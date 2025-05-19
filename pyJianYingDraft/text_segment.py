@@ -422,4 +422,12 @@ class Text_segment(Visual_segment):
         if self.background:
             ret.update(self.background.export_json())
 
+        # 新增：强制写入 text_color 字段
+        ret["text_color"] = self.rgb_to_hex(self.style.color)
+        # 新增：强制写入字号
+        ret["font_size"] = self.style.size
+        ret["text_size"] = self.style.size
         return ret
+
+    def rgb_to_hex(self, rgb):
+        return '#%02x%02x%02x' % tuple(int(255*x) for x in rgb)

@@ -1,0 +1,23 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 854
+PlayResY: 480
+ScaledBorderAndShadow: yes
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
+Style: Main,STHeiti,40,&H00FFFFFF,&H000000FF,&H00000000,&HC0000000,-1,0,0,0,100,100,0,0,1,3,1,2,10,10,10,1
+Style: English,Arial,32,&H00FFFFFF,&H000000FF,&H00000000,&HC0000000,-1,0,0,0,100,100,0,0,1,3,1,2,10,10,10,1
+Style: Note,STHeiti,28,&H00FFFFFF,&H000000FF,&H00000000,&HC0000000,0,0,0,0,100,100,0,0,1,2,1,2,10,10,10,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:05.00,Main,,0,0,0,,{\pos(427,435) \blur0.6 \c&H0000FFFF \3c&H000000& \bord3}第一段视频：负片频闪特效 + 上移转场
+Dialogue: 0,0:00:05.00,0:00:10.00,Main,,0,0,0,,{\pos(427,435) \blur0.6 \c&H00007FFF \3c&H000000& \bord3}第二段视频：故障特效 + 闪白转场
+Dialogue: 0,0:00:10.00,0:00:15.00,Main,,0,0,0,,{\pos(427,435) \blur0.6 \c&H00FFFF00 \3c&H000000& \bord3}第三段视频：金粉闪闪特效 + 叠化转场
+Dialogue: 0,0:00:00.00,0:00:05.00,English,,0,0,0,,{\pos(427,380) \blur0.6 \c&H00FFCC7F \3c&H000000& \bord3}First video: Negative flash effect + Upward transition
+Dialogue: 0,0:00:05.00,0:00:10.00,English,,0,0,0,,{\pos(427,380) \blur0.6 \c&H00FFCC7F \3c&H000000& \bord3}Second video: Glitch effect + White flash transition
+Dialogue: 0,0:00:10.00,0:00:15.00,English,,0,0,0,,{\pos(427,380) \blur0.6 \c&H00FFCC7F \3c&H000000& \bord3}Third video: Golden sparkle effect + Dissolve transition
+Dialogue: 0,0:00:02.00,0:00:05.00,Note,,0,0,0,,{\pos(427,330) \blur0.6 \c&H00CCCCCC \3c&H000000& \bord3}这是一个注释示例
