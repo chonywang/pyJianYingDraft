@@ -1,0 +1,459 @@
+{
+  "draft_name": "my_awesome_video",
+  "drafts_root": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts",
+  "template_folder": "/Users/danielwang/Documents/jianyan/JianyingPro Drafts/Draft Template Old",
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "jianying_version": "3.1.0-beta7",
+  "videos": [
+    {
+      "file_path": "https://s.coze.cn/t/yoqrdjZwo7E/",
+      "start": "0s",
+      "duration": "5s",
+      "target_start": "0s",
+      "transition": "上移",
+      "effects": [
+        {
+          "effect_id": "负片频闪",
+          "start": "0s",
+          "duration": "5s"
+        }
+      ]
+    },
+    {
+      "file_path": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+      "start": "0s",
+      "duration": "5s",
+      "target_start": "5s",
+      "transition": "闪白",
+      "effects": [
+        {
+          "effect_id": "故障",
+          "start": "0s",
+          "duration": "5s"
+        }
+      ]
+    },
+    {
+      "file_path": "https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4",
+      "start": "5s",
+      "duration": "5s",
+      "target_start": "10s",
+      "transition": "叠化",
+      "effects": [
+        {
+          "effect_id": "金粉闪闪",
+          "start": "0s",
+          "duration": "5s"
+        }
+      ]
+    }
+  ],
+  "audio": [
+    {
+      "url": "https://lf3-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_0b2327d5-1c39-47af-bac6-7c3918e05b3e.mp3?lk3s=da27ec82&x-expires=1747299769&x-signature=ohPTBILHeDxLLisp5JAVdb%2BAMq0%3D",
+      "enabled": true,
+      "volume": 1.0,
+      "start": "0s",
+      "target_start": "0s"
+    },
+    {
+      "url": "https://lf6-appstore-sign.oceancloudapi.com/ocean-cloud-tos/VolcanoUserVoice/speech_7426725529589661723_47a01f7b-06c6-41ba-9670-0d9832df8e32.mp3?lk3s=da27ec82&x-expires=1747299799&x-signature=9%2FxdJOdBhs7lJIMsK%2Bm4JJb9cK0%3D",
+      "enabled": true,
+      "volume": 1.0,
+      "start": "5s",
+      "target_start": "5s"
+    }
+  ],
+  "text_tracks": [
+    {
+      "name": "主字幕",
+      "relative_index": 1,
+      "texts": [
+        {
+          "track_name": "主字幕",
+          "text": "第一段视频：负片频闪特效 + 上移转场",
+          "start": "0s",
+          "duration": "5s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 10,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "alpha": 1.0,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 0,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.707
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 10,
+            "en_words": 3
+          }
+        },
+        {
+          "track_name": "主字幕",
+          "text": "第二段视频：故障特效 + 闪白转场",
+          "start": "5s",
+          "duration": "5s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 36,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "alpha": 1.0,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 0,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.907
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 8,
+            "en_words": 3
+          }
+        },
+        {
+          "track_name": "主字幕",
+          "text": "第三段视频：金粉闪闪特效 + 叠化转场",
+          "start": "10s",
+          "duration": "5s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 36,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "alpha": 1.0,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 0,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.907
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 8,
+            "en_words": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "英文字幕",
+      "relative_index": 2,
+      "texts": [
+        {
+          "track_name": "英文字幕",
+          "text": "First video: Negative flash effect + Upward transition",
+          "start": "0s",
+          "duration": "5s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 8,
+            "bold": false,
+            "italic": false,
+            "underline": true,
+            "alpha": 0.9,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 1,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.907
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 8,
+            "en_words": 3
+          }
+        },
+        {
+          "track_name": "英文字幕",
+          "text": "Second video: Glitch effect + White flash transition",
+          "start": "5s",
+          "duration": "5s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 28,
+            "bold": false,
+            "italic": false,
+            "underline": true,
+            "alpha": 0.9,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 1,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.807
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 8,
+            "en_words": 3
+          }
+        },
+        {
+          "track_name": "英文字幕",
+          "text": "Third video: Golden sparkle effect + Dissolve transition",
+          "start": "10s",
+          "duration": "5s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 28,
+            "bold": false,
+            "italic": false,
+            "underline": true,
+            "alpha": 0.9,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 1,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.807
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 8,
+            "en_words": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "注释字幕",
+      "relative_index": 3,
+      "texts": [
+        {
+          "track_name": "注释字幕",
+          "text": "这是一个注释示例",
+          "start": "2s",
+          "duration": "3s",
+          "font": "后现代体",
+          "style": {
+            "color": [
+              0,
+              0,
+              0
+            ],
+            "size": 24,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "alpha": 0.8,
+            "align": 0,
+            "vertical": false,
+            "letter_spacing": 0,
+            "line_spacing": 0
+          },
+          "position": {
+            "x": 0.5,
+            "y": 0.907
+          },
+          "intro_animation": "随机打字机",
+          "outro_animation": "滑动下落",
+          "linebreak": {
+            "mode": "manual",
+            "zh_length": 8,
+            "en_words": 3
+          }
+        }
+      ]
+    }
+  ],
+  "timeline": {
+    "total_duration": "15.0s",
+    "items": [
+      {
+        "track_type": "video",
+        "start": "0s",
+        "duration": "5s",
+        "target_start": "0s",
+        "track_index": 0,
+        "transition": "上移",
+        "effects": [
+          {
+            "effect_id": "负片频闪",
+            "start": "0s",
+            "duration": "5s"
+          }
+        ]
+      },
+      {
+        "track_type": "video",
+        "start": "0s",
+        "duration": "5s",
+        "target_start": "5s",
+        "track_index": 1,
+        "transition": "闪白",
+        "effects": [
+          {
+            "effect_id": "故障",
+            "start": "0s",
+            "duration": "5s"
+          }
+        ]
+      },
+      {
+        "track_type": "video",
+        "start": "5s",
+        "duration": "5s",
+        "target_start": "10s",
+        "track_index": 2,
+        "transition": "叠化",
+        "effects": [
+          {
+            "effect_id": "金粉闪闪",
+            "start": "0s",
+            "duration": "5s"
+          }
+        ]
+      },
+      {
+        "track_type": "audio",
+        "start": "0s",
+        "duration": "0s",
+        "target_start": "0s",
+        "track_index": 0,
+        "volume": 1.0,
+        "enabled": true
+      },
+      {
+        "track_type": "audio",
+        "start": "5s",
+        "duration": "0s",
+        "target_start": "5s",
+        "track_index": 1,
+        "volume": 1.0,
+        "enabled": true
+      },
+      {
+        "track_type": "text",
+        "start": "0s",
+        "duration": "5s",
+        "target_start": "0s",
+        "track_index": 0,
+        "track_name": "主字幕",
+        "text_index": 0
+      },
+      {
+        "track_type": "text",
+        "start": "5s",
+        "duration": "5s",
+        "target_start": "5s",
+        "track_index": 0,
+        "track_name": "主字幕",
+        "text_index": 1
+      },
+      {
+        "track_type": "text",
+        "start": "10s",
+        "duration": "5s",
+        "target_start": "10s",
+        "track_index": 0,
+        "track_name": "主字幕",
+        "text_index": 2
+      },
+      {
+        "track_type": "text",
+        "start": "0s",
+        "duration": "5s",
+        "target_start": "0s",
+        "track_index": 1,
+        "track_name": "英文字幕",
+        "text_index": 0
+      },
+      {
+        "track_type": "text",
+        "start": "5s",
+        "duration": "5s",
+        "target_start": "5s",
+        "track_index": 1,
+        "track_name": "英文字幕",
+        "text_index": 1
+      },
+      {
+        "track_type": "text",
+        "start": "10s",
+        "duration": "5s",
+        "target_start": "10s",
+        "track_index": 1,
+        "track_name": "英文字幕",
+        "text_index": 2
+      },
+      {
+        "track_type": "text",
+        "start": "2s",
+        "duration": "3s",
+        "target_start": "2s",
+        "track_index": 2,
+        "track_name": "注释字幕",
+        "text_index": 0
+      }
+    ]
+  }
+}
