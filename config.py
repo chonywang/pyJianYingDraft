@@ -22,4 +22,7 @@ OPENAI_CONFIG = {
 # 剪映API配置
 JIANYING_CONFIG = {
     "base_url": "http://localhost:8001"
-} 
+}
+
+# Pexels API配置
+PEXELS_API_KEY = "wOq7v59YaBrIdMYhvtApC5QaZPePmJvfPEiIOQBtuBihWKJkZ435kD3q" 
