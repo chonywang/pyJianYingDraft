@@ -295,6 +295,21 @@ class JianYingDraftCreator:
             logger.error(f"下载文件时发生错误: {str(e)}")
             return None
     
+    def _clean_text_content(self, text: str) -> str:
+        """清理文本内容，移除乱码字符
+        
+        Args:
+            text: 原始文本
+            
+        Returns:
+            清理后的文本
+        """
+        # 移除 \u0000 等乱码字符
+        text = text.replace('\u0000', '')
+        # 移除其他可能的控制字符
+        text = ''.join(char for char in text if ord(char) >= 32 or char in '\n\r\t')
+        return text
+
     def create_draft(self) -> Optional[str]:
         """创建草稿
         
@@ -329,6 +344,23 @@ class JianYingDraftCreator:
                             continue
                     
                     video_files.append(video_config)
+            
+            # 清理文本内容
+            if "text_tracks" in self.config:
+                for track in self.config["text_tracks"]:
+                    for text in track.get("texts", []):
+                        if "text" in text:
+                            text["text"] = self._clean_text_content(text["text"])
+            
+            if "texts" in self.config:
+                for text in self.config["texts"]:
+                    if "text" in text:
+                        text["text"] = self._clean_text_content(text["text"])
+            
+            if "translated_texts" in self.config:
+                for text in self.config["translated_texts"]:
+                    if "text" in text:
+                        text["text"] = self._clean_text_content(text["text"])
             
             # 创建初始草稿
             res = self.config["resolution"]

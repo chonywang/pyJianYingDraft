@@ -13,6 +13,7 @@ from pyJianYingDraft import Intro_type, Transition_type, trange, tim
 from pyJianYingDraft.metadata.video_effect_meta import Video_scene_effect_type
 from pyJianYingDraft.metadata.filter_meta import Filter_type
 from pyJianYingDraft.metadata import Text_intro, Text_outro, Text_loop_anim
+from pyJianYingDraft.text_segment import Text_style, Text_border
 import re
 
 # 动画查找表自动导入
@@ -528,6 +529,31 @@ def create_text_segment(text, script, new_draft_folder):
     linebreak_cfg = text.get('linebreak')
     text_content = auto_linebreak_text(text['text'], linebreak_cfg)
 
+    # 处理描边配置
+    border_config = text.get('border')
+    border_obj = None
+    if border_config and isinstance(border_config, dict):
+        try:
+            # 假设 border 配置包含 color (RGB tuple), size (float), alpha (float)
+            border_color_list = border_config.get('color', [1.0, 1.0, 1.0])
+            # 确保颜色是三元组，并转换为float
+            border_color = tuple(float(c) for c in border_color_list)
+
+            border_size = float(border_config.get('size', 0.0))
+            border_alpha = float(border_config.get('alpha', 1.0))
+
+            # 创建 Text_border 对象
+            border_obj = Text_border(
+                color=border_color,
+                size=border_size,
+                alpha=border_alpha
+            )
+            print(f"[DEBUG] 已创建描边对象: color={border_color}, size={border_size}, alpha={border_alpha}")
+
+        except Exception as e:
+            print(f"处理描边配置出错: {e}")
+            border_obj = None # 出错则不使用描边
+
     if "Template Old" in new_draft_folder:
         text_style_id = str(uuid.uuid4()).replace("-", "")
         text_style = {
@@ -545,24 +571,26 @@ def create_text_segment(text, script, new_draft_folder):
         text_segment = draft.Text_segment(
             text_content,
             trange(text.get("start", "0s"), text.get("duration", "5s")),
-            font=getattr(draft.Font_type, text.get("font", "默认")),
+            font=getattr(draft.Font_type, text.get("font", "默认")) if text.get("font") else None,
             style=style_obj,
             clip_settings=draft.Clip_settings(
                 transform_x=transform_x,
                 transform_y=transform_y
-            )
+            ),
+            border=border_obj
         )
         text_segment.extra_material_refs.append(text_style_id)
     else:
         text_segment = draft.Text_segment(
             text_content,
             trange(text.get("start", "0s"), text.get("duration", "5s")),
-            font=getattr(draft.Font_type, text.get("font", "默认")),
+            font=getattr(draft.Font_type, text.get("font", "默认")) if text.get("font") else None,
             style=style_obj,
             clip_settings=draft.Clip_settings(
                 transform_x=transform_x,
                 transform_y=transform_y
-            )
+            ),
+            border=border_obj
         )
 
     # 处理文本动画

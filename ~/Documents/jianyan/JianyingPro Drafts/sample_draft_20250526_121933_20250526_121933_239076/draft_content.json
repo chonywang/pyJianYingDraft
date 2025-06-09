@@ -1,0 +1,905 @@
+{
+  "canvas_config": {
+    "height": 1080,
+    "ratio": "original",
+    "width": 1920
+  },
+  "color_space": 0,
+  "config": {
+    "adjust_max_index": 1,
+    "combination_max_index": 1,
+    "export_range": null,
+    "extract_audio_last_index": 1,
+    "lyrics_recognition_id": "",
+    "lyrics_sync": true,
+    "lyrics_taskinfo": [],
+    "maintrack_adsorb": true,
+    "material_save_mode": 0,
+    "original_sound_last_index": 1,
+    "record_audio_last_index": 1,
+    "sticker_max_index": 1,
+    "subtitle_recognition_id": "",
+    "subtitle_sync": true,
+    "subtitle_taskinfo": [],
+    "video_mute": false
+  },
+  "cover": null,
+  "create_time": 0,
+  "duration": 15000000,
+  "extra_info": null,
+  "fps": 30.0,
+  "group_container": null,
+  "id": "CA9C0DB2-01BC-45D1-AD1A-781795D21FD5",
+  "keyframes": {
+    "adjusts": [],
+    "audios": [],
+    "filters": [],
+    "handwrites": [],
+    "stickers": [],
+    "texts": [],
+    "videos": []
+  },
+  "last_modified_platform": {
+    "app_id": 3704,
+    "app_version": "3.1.0-beta7",
+    "os": "mac",
+    "os_version": "15.4.1",
+    "device_id": "",
+    "hard_disk_id": "",
+    "mac_address": "",
+    "app_source": "lv"
+  },
+  "materials": {
+    "audio_balances": [],
+    "audio_effects": [],
+    "audio_fades": [],
+    "audios": [],
+    "beats": [],
+    "canvases": [],
+    "chromas": [],
+    "color_curves": [],
+    "drafts": [],
+    "effects": [],
+    "handwrites": [],
+    "hsl": [],
+    "images": [],
+    "log_color_wheels": [],
+    "masks": [],
+    "material_animations": [
+      {
+        "id": "80b573e7b8b94c93996e30f26fda061c",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 4500000,
+            "duration": 500000
+          }
+        ]
+      },
+      {
+        "id": "5bea306f9f0a477ca10cafea333eaecb",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 4500000,
+            "duration": 500000
+          }
+        ]
+      },
+      {
+        "id": "909af80c325341c99aab5cd9c1467f47",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 4500000,
+            "duration": 500000
+          }
+        ]
+      },
+      {
+        "id": "f468891d025f4e99bc9a4ae29b7a2373",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 4500000,
+            "duration": 500000
+          }
+        ]
+      },
+      {
+        "id": "bf2f7eea90924bcfbc3680980902d0c5",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 4500000,
+            "duration": 500000
+          }
+        ]
+      },
+      {
+        "id": "f98c2f8d93114ccc8478fe0a8a348c29",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 4500000,
+            "duration": 500000
+          }
+        ]
+      },
+      {
+        "id": "910f1a3a05dd4eeeba9c2bfc0f9104a7",
+        "type": "sticker_animation",
+        "multi_language_current": "none",
+        "animations": [
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "随机打字机",
+            "id": "1644317",
+            "type": "in",
+            "resource_id": "6926718978064650760",
+            "start": 0,
+            "duration": 500000
+          },
+          {
+            "anim_adjust_params": null,
+            "platform": "all",
+            "panel": "",
+            "material_type": "sticker",
+            "name": "滑动下落",
+            "id": "21330850",
+            "type": "out",
+            "resource_id": "7270726693277405733",
+            "start": 2500000,
+            "duration": 500000
+          }
+        ]
+      }
+    ],
+    "placeholders": [],
+    "primary_color_wheels": [],
+    "realtime_denoises": [],
+    "speeds": [],
+    "stickers": [],
+    "tail_leaders": [],
+    "text_templates": [],
+    "texts": [
+      {
+        "id": "938692befa0e45338af195296e2bd171",
+        "content": "第一段视频：负片频闪\n特效 + 上移转场",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.0,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 10,
+        "text_size": 10,
+        "content_format": 0
+      },
+      {
+        "id": "9c8654b05cd94346b09fccbb3c92be90",
+        "content": "第二段视频：故障\n特效 + 闪白转\n场",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.0,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 36,
+        "text_size": 36,
+        "content_format": 0
+      },
+      {
+        "id": "43987889654f46cbb0f7a414ca5fb1dc",
+        "content": "第三段视频：金粉\n闪闪特效 + 叠\n化转场",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.0,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 36,
+        "text_size": 36,
+        "content_format": 0
+      },
+      {
+        "id": "eeab7a1ed94d4446bda0dbd6a8a72f5a",
+        "content": "First video: Negative\nflash effect +\nUpward transition",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.05,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 8,
+        "text_size": 8,
+        "content_format": 0
+      },
+      {
+        "id": "ec98c450cde543f3a1bb199f7903bb93",
+        "content": "Second video: Glitch\neffect + White\nflash transition",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.05,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 28,
+        "text_size": 28,
+        "content_format": 0
+      },
+      {
+        "id": "9c7b0a9060824f96883ac32a1fb6c9d1",
+        "content": "Third video: Golden\nsparkle effect +\nDissolve transition",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.05,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 28,
+        "text_size": 28,
+        "content_format": 0
+      },
+      {
+        "id": "b13bbe8490244422a945941a7c4ff909",
+        "content": "这是一个注释示例",
+        "typesetting": 0,
+        "alignment": 0,
+        "letter_spacing": 0.0,
+        "line_spacing": 0.02,
+        "line_feed": 1,
+        "line_max_width": 0.82,
+        "force_apply_line_max_width": false,
+        "check_flag": 7,
+        "type": "text",
+        "text_color": "#000000",
+        "font_size": 24,
+        "text_size": 24,
+        "content_format": 0
+      }
+    ],
+    "transitions": [],
+    "video_effects": [],
+    "video_trackings": [],
+    "videos": [],
+    "ai_translates": [],
+    "audio_track_indexes": [],
+    "digital_humans": [],
+    "flowers": [],
+    "green_screens": [],
+    "loudnesses": [],
+    "manual_deformations": [],
+    "material_colors": [],
+    "multi_language_refs": [],
+    "plugin_effects": [],
+    "shapes": [],
+    "smart_crops": [],
+    "smart_relights": [],
+    "sound_channel_mappings": [],
+    "time_marks": [],
+    "vocal_beautifys": [],
+    "vocal_separations": []
+  },
+  "mutable_config": null,
+  "name": "",
+  "new_version": "3.1.0-beta7",
+  "platform": {
+    "app_id": 3704,
+    "app_version": "3.1.0-beta7",
+    "os": "mac",
+    "os_version": "15.4.1",
+    "device_id": "",
+    "hard_disk_id": "",
+    "mac_address": "",
+    "app_source": "lv"
+  },
+  "relationships": [],
+  "render_index_track_mode_on": true,
+  "tracks": [
+    {
+      "attribute": 0,
+      "flag": 0,
+      "id": "346d1dd8e7bd4fa1b83712c1b41ead3b",
+      "is_default_name": false,
+      "name": "主字幕",
+      "segments": [
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "dab6f129c8824d27bb31da4e53fa43d3",
+          "material_id": "938692befa0e45338af195296e2bd171",
+          "target_timerange": {
+            "start": 0,
+            "duration": 5000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "ff64d3c8eabf460a8166337f90707914",
+            "80b573e7b8b94c93996e30f26fda061c"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.2064814814814815
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15001,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        },
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "02ae4a7292264c118c645261ce161f89",
+          "material_id": "9c8654b05cd94346b09fccbb3c92be90",
+          "target_timerange": {
+            "start": 5000000,
+            "duration": 5000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "b4c62cd721734abdbafac705f36e42db",
+            "5bea306f9f0a477ca10cafea333eaecb"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.4064814814814815
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15001,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        },
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "92ed7f6f117d4e2bb92067facf35337d",
+          "material_id": "43987889654f46cbb0f7a414ca5fb1dc",
+          "target_timerange": {
+            "start": 10000000,
+            "duration": 5000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "9cc8fbd61bd544efb6e917314936c959",
+            "909af80c325341c99aab5cd9c1467f47"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.4064814814814815
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15001,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "attribute": 0,
+      "flag": 0,
+      "id": "ff08f84a7bc54ca38fc8d5c02cdbcd84",
+      "is_default_name": false,
+      "name": "英文字幕",
+      "segments": [
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "f64b0420a7ca439bb2d1c0eec5221525",
+          "material_id": "eeab7a1ed94d4446bda0dbd6a8a72f5a",
+          "target_timerange": {
+            "start": 0,
+            "duration": 5000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "a1e0b316c5454250ab101915d44882f5",
+            "f468891d025f4e99bc9a4ae29b7a2373"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.4064814814814815
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15002,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        },
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "81ee576e12a44d0f92653986851866c8",
+          "material_id": "ec98c450cde543f3a1bb199f7903bb93",
+          "target_timerange": {
+            "start": 5000000,
+            "duration": 5000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "22b3b5d6f8994d1bb7293cf2f06938b1",
+            "bf2f7eea90924bcfbc3680980902d0c5"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.30648148148148147
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15002,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        },
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "f657870539b4448bb8eb61e3a80d0764",
+          "material_id": "9c7b0a9060824f96883ac32a1fb6c9d1",
+          "target_timerange": {
+            "start": 10000000,
+            "duration": 5000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "93aef306e81c4263a780f11290103097",
+            "f98c2f8d93114ccc8478fe0a8a348c29"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.30648148148148147
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15002,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "attribute": 0,
+      "flag": 0,
+      "id": "ba0a14b052f74edb8a32b611bf6dfab1",
+      "is_default_name": false,
+      "name": "注释字幕",
+      "segments": [
+        {
+          "enable_adjust": true,
+          "enable_color_correct_adjust": false,
+          "enable_color_curves": true,
+          "enable_color_match_adjust": false,
+          "enable_color_wheels": true,
+          "enable_lut": true,
+          "enable_smart_color_adjust": false,
+          "last_nonzero_volume": 1.0,
+          "reverse": false,
+          "track_attribute": 0,
+          "track_render_index": 0,
+          "visible": true,
+          "id": "e4494efdac264312b7290cbaee8bb98b",
+          "material_id": "b13bbe8490244422a945941a7c4ff909",
+          "target_timerange": {
+            "start": 2000000,
+            "duration": 3000000
+          },
+          "common_keyframes": [],
+          "keyframe_refs": [],
+          "source_timerange": null,
+          "speed": 1.0,
+          "volume": 1.0,
+          "extra_material_refs": [
+            "89c03b6dd8d7441094196c9dd4c5232f",
+            "910f1a3a05dd4eeeba9c2bfc0f9104a7"
+          ],
+          "clip": {
+            "alpha": 1.0,
+            "flip": {
+              "horizontal": false,
+              "vertical": false
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "transform": {
+              "x": 0.0,
+              "y": 0.4064814814814815
+            },
+            "text_animation": {
+              "id": "21330850",
+              "duration": 500000
+            }
+          },
+          "uniform_scale": {
+            "on": true,
+            "value": 1.0
+          },
+          "render_index": 15003,
+          "text_animation": {
+            "id": "21330850",
+            "type": "out",
+            "duration": 500000
+          }
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "id": "eb7671763d614abe97a4e0ed054b2d36",
+      "type": "audio",
+      "name": "音轨",
+      "segments": []
+    }
+  ],
+  "update_time": 0,
+  "version": 360000
+}
